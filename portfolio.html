@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Your Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #1C1D20;
+            --color-dark-dark: #141517;
+            --color-light: #FFFFFF;
+            --color-blue: #455CE9;
+            --color-blue-dark: #334BD3;
+            --color-gray: #999D9E;
+            --color-lightgray: #E9EAEB;
+            --color-border: rgba(28, 29, 32, 0.175);
+            --color-border-solid: #D2D2D2;
+            --color-border-light: rgba(255, 255, 255, 0.2);
+            --color-border-solid-light: #545557;
+            --color-text: #1C1D20;
+            --color-text-light: #FFF;
+            --animation-primary: all .5s cubic-bezier(.7, 0, .3, 1);
+            --animation-fast: all .3s cubic-bezier(.7, 0, .3, 1);
+            --animation-smooth: all .7s cubic-bezier(.7, 0, .3, 1);
+            --animation-slow: all .9s cubic-bezier(.7, 0, .3, 1);
+            --gap-padding: clamp(1.5em, 4vw, 2.5em);
+            --container-padding: 6vw;
+            --section-padding: 12vh;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            font-weight: 400;
+            font-size: clamp(16px, 1.2vw, 19px);
+            -webkit-font-smoothing: antialiased;
+            background-color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVIGATION ─────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem var(--container-padding);
+            color: var(--color-text-light);
+        }
+
+        .nav-logo {
+            font-size: 0.82em;
+            opacity: 0.65;
+            text-decoration: none;
+            color: inherit;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.82em;
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: var(--animation-fast);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* ─── HERO ───────────────────────────────────── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero {
+            background-color: #6A6C6B;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center top;
+        }
+
+        /* Location badge */
+        .hero-location {
+            position: absolute;
+            top: 50%;
+            left: var(--container-padding);
+            transform: translateY(-60%);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--color-dark);
+            color: var(--color-text-light);
+            border-radius: 100px;
+            padding: 0.45rem 0.9rem 0.45rem 0.45rem;
+            font-size: 0.68em;
+            line-height: 1.35;
+        }
+
+        .hero-location-icon {
+            width: 30px;
+            height: 30px;
+            border: 1.5px solid var(--color-border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1em;
+        }
+
+        /* Diagonal arrow */
+        .hero-arrow {
+            position: absolute;
+            top: 38%;
+            right: calc(var(--container-padding) + 10vw);
+            color: var(--color-text-light);
+            font-size: 1.3rem;
+            opacity: 0.85;
+        }
+
+        /* Tagline top-right */
+        .hero-tagline {
+            position: absolute;
+            top: 50%;
+            right: var(--container-padding);
+            transform: translateY(-60%);
+            color: var(--color-text-light);
+            line-height: 1.25;
+            font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+            font-weight: 300;
+            text-align: left;
+        }
+
+        /* ─── SCROLLING NAME ─────────────────────────── */
+        .hero-name-wrap {
+            position: absolute;
+            bottom: -0.1em;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-name-track {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: marquee 14s linear infinite;
+        }
+
+        .hero-name-track span {
+            font-size: clamp(5rem, 14vw, 14rem);
+            font-weight: 300;
+            color: var(--color-text-light);
+            letter-spacing: -0.025em;
+            line-height: 0.88;
+            padding-right: 0.4em;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ─── ABOUT ──────────────────────────────────── */
+        .about {
+            background-color: var(--color-light);
+            padding: var(--section-padding) var(--container-padding);
+            position: relative;
+        }
+
+        .about-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            background: var(--color-dark);
+            color: var(--color-text-light);
+            font-size: 0.68em;
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 3.5rem;
+        }
+
+        .about-content {
+            max-width: 820px;
+        }
+
+        .about-heading {
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.8rem;
+        }
+
+        .about-text {
+            font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+            color: var(--color-gray);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* ─── INTERACTIVE HOVER LINKS ───────────────── */
+        .hover-links {
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .hover-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--color-lightgray);
+            padding: 1.5rem 0;
+            text-decoration: none;
+            overflow: hidden;
+            transition: border-color 0.5s;
+        }
+
+        .hover-link:first-child {
+            border-top: 2px solid var(--color-lightgray);
+        }
+
+        .hover-link:hover {
+            border-color: var(--color-dark);
+        }
+
+        .hover-link-left {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hover-link-heading {
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 700;
+            color: var(--color-gray);
+            display: block;
+            line-height: 1;
+            transition: color 0.5s;
+            transform: translateX(0);
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), color 0.5s;
+        }
+
+        .hover-link:hover .hover-link-heading {
+            color: var(--color-dark);
+            transform: translateX(-1rem);
+        }
+
+        .hl-letter {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .hover-link:hover .hl-letter {
+            transform: translateX(1rem);
+        }
+
+        .hover-link-sub {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.9em;
+            color: var(--color-gray);
+            transition: color 0.5s;
+        }
+
+        .hover-link:hover .hover-link-sub {
+            color: var(--color-dark);
+        }
+
+        .hover-link-img {
+            position: absolute;
+            width: 260px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0) rotate(-12.5deg) translate(-10%, -50%);
+            transition: opacity 0.3s, transform 0.45s cubic-bezier(.34, 1.56, .64, 1);
+            top: 50%;
+            left: 50%;
+        }
+
+        .hover-link:hover .hover-link-img {
+            opacity: 1;
+            transform: scale(1) rotate(12.5deg) translate(-10%, -50%);
+        }
+
+        .hover-link-arrow {
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hover-link-arrow-inner {
+            transform: translateX(150%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), opacity 0.3s;
+            font-size: 2rem;
+            color: var(--color-dark);
+            padding: 0.5rem 1rem;
+        }
+
+        .hover-link:hover .hover-link-arrow-inner {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* ─── FEATURES SECTION (Project One) ───────── */
+        .project-one-features {
+            margin-top: 5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .features-label {
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-gray);
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 720px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-card {
+            background: var(--color-lightgray);
+            border-radius: 1rem;
+            padding: 2rem;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: scale(0.98) translateY(0);
+        }
+
+        .feature-card:active {
+            transform: scale(0.96) translateY(0);
+        }
+
+        .feature-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Skill tags */
+        .skill-visual {
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .skill-tag {
+            padding: 0.35rem 0.85rem;
+            border: 1px solid rgba(28, 29, 32, 0.2);
+            border-radius: 100px;
+            font-size: 0.78em;
+            color: var(--color-dark);
+            background: white;
+            white-space: nowrap;
+        }
+
+        .feature-card-body {
+            margin-top: 1.2rem;
+        }
+
+        .feature-card-body h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--color-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card-body p {
+            font-size: 0.82em;
+            color: var(--color-gray);
+            line-height: 1.5;
+        }
+
+        .project-points {
+            list-style: none;
+            margin-top: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .project-points li {
+            font-size: 0.8em;
+            color: var(--color-gray);
+            line-height: 1.4;
+            padding-left: 1em;
+            position: relative;
+        }
+
+        .project-points li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            opacity: 0.5;
+        }
+
+        /* ─── WORK ───────────────────────────────────── */
+        .work {
+            background-color: var(--color-light);
+            padding: var(--section-padding) var(--container-padding);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        .section-count {
+            font-size: 0.8em;
+            color: var(--color-gray);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.6rem;
+            cursor: pointer;
+            background: var(--color-lightgray);
+            aspect-ratio: 4 / 3;
+        }
+
+        .work-item:first-child {
+            grid-column: span 2;
+            aspect-ratio: 16 / 7;
+        }
+
+        .work-item-bg {
+            width: 100%;
+            height: 100%;
+            transition: transform .7s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        .work-item:hover .work-item-bg {
+            transform: scale(1.04);
+        }
+
+        .work-item-info {
+            position: absolute;
+            bottom: 1.4rem;
+            left: 1.4rem;
+            right: 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .work-item-title {
+            font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+            font-weight: 400;
+            color: var(--color-text-light);
+        }
+
+        .work-item-tag {
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.35);
+            padding: 0.25rem 0.65rem;
+            border-radius: 100px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ─── CONTACT ────────────────────────────────── */
+        .contact {
+            background-color: var(--color-dark);
+            padding: var(--section-padding) var(--container-padding);
+            color: var(--color-text-light);
+        }
+
+        .contact-heading {
+            font-size: clamp(3rem, 9vw, 10rem);
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            margin-bottom: 3rem;
+            max-width: 12ch;
+        }
+
+        .contact-heading em {
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.75rem 1.6rem;
+            border: 1px solid var(--color-border-light);
+            border-radius: 100px;
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.88em;
+            transition: var(--animation-fast);
+        }
+
+        .contact-link:hover {
+            background: var(--color-text-light);
+            color: var(--color-dark);
+            border-color: var(--color-text-light);
+        }
+
+        .contact-link-primary {
+            background: var(--color-text-light);
+            border-color: var(--color-text-light);
+            color: var(--color-dark);
+        }
+
+        .contact-link-primary:hover {
+            background: transparent;
+            border-color: var(--color-text-light);
+            color: var(--color-text-light);
+        }
+
+        /* ─── FOOTER ─────────────────────────────────── */
+        footer {
+            background-color: var(--color-dark-dark);
+            padding: 1.8rem var(--container-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-gray);
+            font-size: 0.78em;
+            border-top: 1px solid var(--color-border-solid-light);
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--animation-fast);
+        }
+
+        footer a:hover {
+            color: var(--color-text-light);
+        }
+
+        /* ─── BUTTONS ────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.75rem 1.6rem;
+            border-radius: 100px;
+            font-size: 0.88em;
+            font-family: inherit;
+            font-weight: 400;
+            cursor: pointer;
+            transition: var(--animation-fast);
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-dark {
+            background: var(--color-dark);
+            color: var(--color-text-light);
+        }
+
+        .btn-dark:hover {
+            background: var(--color-blue);
+        }
+
+        .btn-outline {
+            background: var(--color-dark);
+            color: var(--color-text-light);
+            border: 1px solid var(--color-dark);
+        }
+
+        .btn-outline:hover {
+            background: transparent;
+            color: var(--color-dark);
+            border-color: var(--color-border-solid);
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────── */
+        @media (max-width: 680px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item:first-child {
+                grid-column: span 1;
+                aspect-ratio: 4 / 3;
+            }
+
+            .hero-tagline {
+                display: none;
+            }
+
+            .hero-arrow {
+                display: none;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── NAVIGATION ──────────────────────────────── -->
+    <nav>
+        <a href="#" class="nav-logo">© Portfolio</a>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ─── HERO ────────────────────────────────────── -->
+    <section class="hero">
+
+        <img class="hero-image" src="portfolio.png" alt="Your Name">
+
+        <!-- Location badge -->
+        <div class="hero-location">
+            <div class="hero-location-icon">⊕</div>
+            <div>
+                Located<br>
+                Oshawa,<br>
+                Canada, ON
+            </div>
+        </div>
+
+        <!-- Arrow indicator -->
+        <div class="hero-arrow">↗</div>
+
+        <!-- Right tagline -->
+        <div class="hero-tagline">
+            Computer Programming & Analysis Student<br>
+            Front‑End Developer in Training &amp; Software
+            Developer
+        </div>
+
+        <!-- Scrolling name — duplicate text needed for seamless loop -->
+        <div class="hero-name-wrap">
+            <div class="hero-name-track">
+                <span>Jolin Ma &mdash; Jolin Ma &mdash;&nbsp;</span>
+                <span>Jolin Ma &mdash; Jolin Ma &mdash;&nbsp;</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ─── ABOUT ────────────────────────────────────── -->
+    <section class="about" id="about">
+        <div class="about-pill">About<br>me</div>
+        <div class="about-content">
+            <h2 class="about-heading">
+                Creative Technologist & Problem Solver
+            </h2>
+            <p class="about-text">
+                I'm a Computer Programming & Analysis student at Durham College who loves creating clean, modern,
+                user‑focused digital experiences. I'm especially drawn to front‑end development, UI/UX design, and
+                workflow automation, where I can blend creativity with logical problem‑solving. My goal is to build
+                applications that feel intuitive, accessible, and visually polished, with thoughtful design at the core.
+            </p>
+            <a href="#contact" class="btn btn-outline">Get in touch ↗</a>
+            <div class="hover-links">
+                <a class="hover-link" href="#skills"
+                    data-img="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Skills</div>
+                        <span class="hover-link-sub">Tools and technologies I work with</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="Skills">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#experience"
+                    data-img="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Experience</div>
+                        <span class="hover-link-sub">My professional journey so far</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80" alt="Experience">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#projects"
+                    data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Projects</div>
+                        <span class="hover-link-sub">Selected work I'm proud of</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Projects">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#uiux"
+                    data-img="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">UI/UX</div>
+                        <span class="hover-link-sub">Designing intuitive, beautiful interfaces</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="UI/UX">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#motion"
+                    data-img="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Motion</div>
+                        <span class="hover-link-sub">Bringing interfaces to life with animation</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80" alt="Motion">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── WORK ─────────────────────────────────────── -->
+    <section class="work" id="work">
+        <div class="section-header">
+            <h2 class="section-title">Recent Work</h2>
+            <span class="section-count">(2026)</span>
+        </div>
+
+        <div class="work-grid">
+
+            <!-- Project 1 (wide) -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="skills">
+                    <p class="features-label">Skills</p>
+                    <div class="features-grid">
+
+                        <!-- Programming card -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">OOP</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">C#</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Programming</h3>
+                            </div>
+                        </div>
+
+                        <!-- Web & Front-End card -->
+                        <div class="feature-card" style="transition-delay:0.1s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Responsive Design</span>
+                                    <span class="skill-tag">UI Layout</span>
+                                    <span class="skill-tag">Accessibility</span>
+                                    <span class="skill-tag">Flexbox &amp; Grid</span>
+                                    <span class="skill-tag">Basic Animation</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Web &amp; Front-End</h3>
+                            </div>
+                        </div>
+
+                        <!-- Tools & Technologies card -->
+                        <div class="feature-card" style="transition-delay:0.2s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">VS Code</span>
+                                    <span class="skill-tag">IntelliJ</span>
+                                    <span class="skill-tag">Git &amp; GitHub</span>
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">Power Automate</span>
+                                    <span class="skill-tag">SharePoint</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Tools &amp; Technologies</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 — Experience -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="experience">
+                    <p class="features-label">Experience</p>
+                    <div class="features-grid">
+
+                        <!-- Durham College card -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Durham College</span>
+                                    <span class="skill-tag">Oshawa, Ontario</span>
+                                    <span class="skill-tag">Canada</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Project Assistant</h3>
+                                <p>Durham College — Oshawa, Ontario, Canada</p>
+                                <ul class="project-points">
+                                    <li>Designed, built, and maintained Power Automate workflows to streamline
+                                        departmental processes and reduce manual work</li>
+                                    <li>Developed automated approval flows, notifications, and data-tracking systems for
+                                        multiple teams</li>
+                                    <li>Integrated Microsoft Lists, SharePoint, and Power Automate to improve accuracy
+                                        and efficiency in daily operations</li>
+                                    <li>Collaborated with different faculty to gather requirements and translate them
+                                        into
+                                        functional automation solutions</li>
+                                    <li>Monitored, tested, and optimized workflows to ensure reliability and smooth
+                                        performance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 — Projects -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="projects">
+                    <p class="features-label">Projects</p>
+                    <div class="features-grid">
+
+                        <!-- Virtual Fitting Room -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">MediaPipe</span>
+                                    <span class="skill-tag">remove.bg API</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Virtual Fitting Room</h3>
+                                <p>Personal Project</p>
+                                <ul class="project-points">
+                                    <li>Browser-based virtual fitting room with real-time webcam try-on using pure HTML,
+                                        CSS, and JavaScript</li>
+                                    <li>Hand-gesture interaction with MediaPipe Hands for fingertip tracking and
+                                        pinch-to-grab at ~15–30 FPS</li>
+                                    <li>In-browser image editor with crop, resize, flip, and AI background removal via
+                                        remove.bg REST API</li>
+                                    <li>Drag-and-drop accessory management, custom uploads, and screenshot capture</li>
+                                    <li>Responsive dark-theme UI with localStorage persistence</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Accessible Transit & Rewards App -->
+                        <div class="feature-card" style="transition-delay:0.1s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Hackathon</span>
+                                    <span class="skill-tag">Accessibility</span>
+                                    <span class="skill-tag">UI/UX</span>
+                                    <span class="skill-tag">Transit</span>
+                                    <span class="skill-tag">Gamification</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Accessible Transit &amp; Rewards App</h3>
+                                <p>Hackathon 2026 — Durham College</p>
+                                <ul class="project-points">
+                                    <li>Collaborated in a hackathon team to design and prototype an
+                                        accessibility-focused transit application featuring real-time route planning and
+                                        inclusive user experiences</li>
+                                    <li>Implemented step-free routing, crowding indicators, accessible boarding
+                                        guidance, and live service alerts to support diverse mobility needs</li>
+                                    <li>Designed a gamification system with points, streaks, achievements, levels, and
+                                        weekly challenges to drive long-term user engagement</li>
+                                    <li>Built a reward redemption system with QR code generation, categorized offers,
+                                        and integrations with local businesses</li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── CONTACT ──────────────────────────────────── -->
+    <section class="contact" id="contact">
+        <h2 class="contact-heading">
+            Let's work <em>together.</em>
+        </h2>
+        <div class="contact-links">
+            <a href="mailto:Jolin_ma@icloud.com" class="contact-link contact-link-primary">Send an email ↗</a>
+            <a href="https://www.linkedin.com/in/jolin-ma-977aa739a/" class="contact-link" target="_blank"
+                rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/Jolin-ma/" class="contact-link" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ───────────────────────────────────── -->
+    <footer>
+        <span>© 2026 Jolin Ma — All rights reserved</span>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
+    </footer>
+
+    <script>
+        // Wrap each letter of hover-link headings in a span for stagger animation
+        document.querySelectorAll('.hover-link-heading').forEach(heading => {
+            heading.innerHTML = heading.textContent.split('').map((char, i) =>
+                `<span class="hl-letter" style="transition-delay:${0.25 + i * 0.04}s">${char === ' ' ? '&nbsp;' : char}</span>`
+            ).join('');
+        });
+
+        // ── Scroll reveal for feature cards ───────────
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.feature-card').forEach(el => revealObserver.observe(el));
+
+        // Spring-based image tracking
+        document.querySelectorAll('.hover-link').forEach(link => {
+            const img = link.querySelector('.hover-link-img');
+            let targetLeft = 50, targetTop = 50;
+            let currentLeft = 50, currentTop = 50;
+            let rafId, isHovering = false;
+
+            function tick() {
+                currentLeft += (targetLeft - currentLeft) * 0.12;
+                currentTop += (targetTop - currentTop) * 0.12;
+                img.style.left = currentLeft + '%';
+                img.style.top = currentTop + '%';
+                if (isHovering) rafId = requestAnimationFrame(tick);
+            }
+
+            link.addEventListener('mousemove', e => {
+                const rect = link.getBoundingClientRect();
+                const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+                const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+                targetLeft = 50 + xPct * 20;
+                targetTop = 50 - yPct * 20;
+            });
+
+            link.addEventListener('mouseenter', () => {
+                isHovering = true;
+                cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(tick);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                isHovering = false;
+                targetLeft = 50;
+                targetTop = 50;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
