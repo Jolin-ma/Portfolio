@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Your Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #1C1D20;
+            --color-dark-dark: #141517;
+            --color-light: #FFFFFF;
+            --color-blue: #455CE9;
+            --color-blue-dark: #334BD3;
+            --color-gray: #999D9E;
+            --color-lightgray: #E9EAEB;
+            --color-border: rgba(28, 29, 32, 0.175);
+            --color-border-solid: #D2D2D2;
+            --color-border-light: rgba(255, 255, 255, 0.2);
+            --color-border-solid-light: #545557;
+            --color-text: #1C1D20;
+            --color-text-light: #FFF;
+            --animation-primary: all .5s cubic-bezier(.7, 0, .3, 1);
+            --animation-fast: all .3s cubic-bezier(.7, 0, .3, 1);
+            --animation-smooth: all .7s cubic-bezier(.7, 0, .3, 1);
+            --animation-slow: all .9s cubic-bezier(.7, 0, .3, 1);
+            --gap-padding: clamp(1.5em, 4vw, 2.5em);
+            --container-padding: 6vw;
+            --section-padding: 12vh;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            font-weight: 400;
+            font-size: clamp(16px, 1.2vw, 19px);
+            -webkit-font-smoothing: antialiased;
+            background-color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVIGATION ─────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem var(--container-padding);
+            color: var(--color-text-light);
+        }
+
+        .nav-logo {
+            font-size: 0.82em;
+            opacity: 0.65;
+            text-decoration: none;
+            color: inherit;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.82em;
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: var(--animation-fast);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* ─── HERO ───────────────────────────────────── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero {
+            background-color: #6A6C6B;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center top;
+        }
+
+        /* Location badge */
+        .hero-location {
+            position: absolute;
+            top: 50%;
+            left: var(--container-padding);
+            transform: translateY(-60%);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--color-dark);
+            color: var(--color-text-light);
+            border-radius: 100px;
+            padding: 0.45rem 0.9rem 0.45rem 0.45rem;
+            font-size: 0.68em;
+            line-height: 1.35;
+        }
+
+        .hero-location-icon {
+            width: 30px;
+            height: 30px;
+            border: 1.5px solid var(--color-border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1em;
+        }
+
+        /* Diagonal arrow */
+        .hero-arrow {
+            position: absolute;
+            top: 38%;
+            right: calc(var(--container-padding) + 10vw);
+            color: var(--color-text-light);
+            font-size: 1.3rem;
+            opacity: 0.85;
+        }
+
+        /* Tagline top-right */
+        .hero-tagline {
+            position: absolute;
+            top: 50%;
+            right: var(--container-padding);
+            transform: translateY(-60%);
+            color: var(--color-text-light);
+            line-height: 1.25;
+            font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+            font-weight: 300;
+            text-align: left;
+        }
+
+        /* ─── SCROLLING NAME ─────────────────────────── */
+        .hero-name-wrap {
+            position: absolute;
+            bottom: -0.1em;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-name-track {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: marquee 14s linear infinite;
+        }
+
+        .hero-name-track span {
+            font-size: clamp(5rem, 14vw, 14rem);
+            font-weight: 300;
+            color: var(--color-text-light);
+            letter-spacing: -0.025em;
+            line-height: 0.88;
+            padding-right: 0.4em;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ─── ABOUT ──────────────────────────────────── */
+        .about {
+            background-color: var(--color-light);
+            padding: var(--section-padding) var(--container-padding);
+            position: relative;
+        }
+
+        .about-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            background: var(--color-dark);
+            color: var(--color-text-light);
+            font-size: 0.68em;
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 3.5rem;
+            cursor: pointer;
+            transition: background 0.3s cubic-bezier(.7,0,.3,1), color 0.3s cubic-bezier(.7,0,.3,1);
+        }
+
+        .about-pill:hover {
+            background: var(--color-light);
+            color: var(--color-dark);
+        }
+
+        .about-content {
+            max-width: 820px;
+        }
+
+        .about-heading {
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.8rem;
+        }
+
+        .about-text {
+            font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+            color: var(--color-gray);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* ─── INTERACTIVE HOVER LINKS ───────────────── */
+        .hover-links {
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .hover-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--color-lightgray);
+            padding: 1.5rem 0;
+            text-decoration: none;
+            overflow: hidden;
+            transition: border-color 0.5s;
+        }
+
+        .hover-link:first-child {
+            border-top: 2px solid var(--color-lightgray);
+        }
+
+        .hover-link:hover {
+            border-color: var(--color-dark);
+        }
+
+        .hover-link-left {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hover-link-heading {
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 700;
+            color: var(--color-gray);
+            display: block;
+            line-height: 1;
+            transition: color 0.5s;
+            transform: translateX(0);
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), color 0.5s;
+        }
+
+        .hover-link:hover .hover-link-heading {
+            color: var(--color-dark);
+            transform: translateX(-1rem);
+        }
+
+        .hl-letter {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .hover-link:hover .hl-letter {
+            transform: translateX(1rem);
+        }
+
+        .hover-link-sub {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.9em;
+            color: var(--color-gray);
+            transition: color 0.5s;
+        }
+
+        .hover-link:hover .hover-link-sub {
+            color: var(--color-dark);
+        }
+
+        .hover-link-img {
+            position: absolute;
+            width: 260px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0) rotate(-12.5deg) translate(-10%, -50%);
+            transition: opacity 0.3s, transform 0.45s cubic-bezier(.34, 1.56, .64, 1);
+            top: 50%;
+            left: 50%;
+        }
+
+        .hover-link:hover .hover-link-img {
+            opacity: 1;
+            transform: scale(1) rotate(12.5deg) translate(-10%, -50%);
+        }
+
+        .hover-link-arrow {
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hover-link-arrow-inner {
+            transform: translateX(150%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), opacity 0.3s;
+            font-size: 2rem;
+            color: var(--color-dark);
+            padding: 0.5rem 1rem;
+        }
+
+        .hover-link:hover .hover-link-arrow-inner {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* ─── FEATURES SECTION (Project One) ───────── */
+        .project-one-features {
+            margin-top: 5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .features-label {
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-gray);
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 720px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-card {
+            background: var(--color-lightgray);
+            border-radius: 1rem;
+            padding: 2rem;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: scale(0.98) translateY(0);
+        }
+
+        .feature-card:active {
+            transform: scale(0.96) translateY(0);
+        }
+
+        .feature-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Skill tags */
+        .skill-visual {
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .skill-tag {
+            padding: 0.35rem 0.85rem;
+            border: 1px solid rgba(28, 29, 32, 0.2);
+            border-radius: 100px;
+            font-size: 0.78em;
+            color: var(--color-dark);
+            background: white;
+            white-space: nowrap;
+        }
+
+        .feature-card-body {
+            margin-top: 1.2rem;
+        }
+
+        .feature-card-body h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--color-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card-body p {
+            font-size: 0.82em;
+            color: var(--color-gray);
+            line-height: 1.5;
+        }
+
+        .project-points {
+            list-style: none;
+            margin-top: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .project-points li {
+            font-size: 0.8em;
+            color: var(--color-gray);
+            line-height: 1.4;
+            padding-left: 1em;
+            position: relative;
+        }
+
+        .project-points li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            opacity: 0.5;
+        }
+
+        /* ─── WORK ───────────────────────────────────── */
+        .work {
+            background-color: var(--color-light);
+            padding: var(--section-padding) var(--container-padding);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        .section-count {
+            font-size: 0.8em;
+            color: var(--color-gray);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.6rem;
+            cursor: pointer;
+            background: var(--color-lightgray);
+            aspect-ratio: 4 / 3;
+        }
+
+        .work-item:first-child {
+            grid-column: span 2;
+            aspect-ratio: 16 / 7;
+        }
+
+        .work-item-bg {
+            width: 100%;
+            height: 100%;
+            transition: transform .7s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        .work-item:hover .work-item-bg {
+            transform: scale(1.04);
+        }
+
+        .work-item-info {
+            position: absolute;
+            bottom: 1.4rem;
+            left: 1.4rem;
+            right: 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .work-item-title {
+            font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+            font-weight: 400;
+            color: var(--color-text-light);
+        }
+
+        .work-item-tag {
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.35);
+            padding: 0.25rem 0.65rem;
+            border-radius: 100px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ─── CONTACT ────────────────────────────────── */
+        .contact {
+            background-color: var(--color-dark);
+            padding: var(--section-padding) var(--container-padding);
+            color: var(--color-text-light);
+        }
+
+.contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.75rem 1.6rem;
+            border: 1px solid var(--color-border-light);
+            border-radius: 100px;
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.88em;
+            transition: var(--animation-fast);
+        }
+
+        .contact-link:hover {
+            background: var(--color-text-light);
+            color: var(--color-dark);
+            border-color: var(--color-text-light);
+        }
+
+
+        /* ─── FOOTER ─────────────────────────────────── */
+        footer {
+            background-color: var(--color-dark-dark);
+            padding: 1.8rem var(--container-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-gray);
+            font-size: 0.78em;
+            border-top: 1px solid var(--color-border-solid-light);
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--animation-fast);
+        }
+
+        footer a:hover {
+            color: var(--color-text-light);
+        }
+
+        /* ─── BUTTONS ────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.75rem 1.6rem;
+            border-radius: 100px;
+            font-size: 0.88em;
+            font-family: inherit;
+            font-weight: 400;
+            cursor: pointer;
+            transition: var(--animation-fast);
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-dark {
+            background: var(--color-dark);
+            color: var(--color-text-light);
+        }
+
+        .btn-dark:hover {
+            background: var(--color-blue);
+        }
+
+        .btn-outline {
+            background: var(--color-dark);
+            color: var(--color-text-light);
+            border: 1px solid var(--color-dark);
+        }
+
+        .btn-outline:hover {
+            background: transparent;
+            color: var(--color-dark);
+            border-color: var(--color-border-solid);
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────── */
+        @media (max-width: 680px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item:first-child {
+                grid-column: span 1;
+                aspect-ratio: 4 / 3;
+            }
+
+            .hero-tagline {
+                display: none;
+            }
+
+            .hero-arrow {
+                display: none;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── NAVIGATION ──────────────────────────────── -->
+    <nav>
+        <a href="#" class="nav-logo">© Portfolio</a>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ─── HERO ────────────────────────────────────── -->
+    <section class="hero">
+
+        <img class="hero-image" src="portfolio.png" alt="Your Name">
+
+        <!-- Location badge -->
+        <div class="hero-location">
+            <div class="hero-location-icon">⊕</div>
+            <div>
+                Located<br>
+                Oshawa,<br>
+                Canada, ON
+            </div>
+        </div>
+
+        <!-- Arrow indicator -->
+        <div class="hero-arrow">↗</div>
+
+        <!-- Right tagline -->
+        <div class="hero-tagline">
+            Computer Programming & Analysis Student<br>
+            Front‑End Developer in Training &amp; Software
+            Developer
+        </div>
+
+        <!-- Scrolling name — duplicate text needed for seamless loop -->
+        <div class="hero-name-wrap">
+            <div class="hero-name-track">
+                <span>Jolin Ma &mdash; Jolin Ma &mdash;&nbsp;</span>
+                <span>Jolin Ma &mdash; Jolin Ma &mdash;&nbsp;</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ─── ABOUT ────────────────────────────────────── -->
+    <section class="about" id="about">
+        <div class="about-pill">About<br>me</div>
+        <div class="about-content">
+            <h2 class="about-heading">
+                Creative Technologist & Problem Solver
+            </h2>
+            <p class="about-text">
+                I'm a Computer Programming & Analysis student at Durham College with a passion for crafting clean, modern, and user-centric front-end experiences. I thrive at the intersection of creative UI/UX design and logical problem-solving, specializing in turning complex ideas into intuitive, accessible, and visually polished interfaces. Guided by thoughtful design principles, my goal is to build web applications that look stunning and feel completely seamless to the user.
+            </p>
+            <a href="#contact" class="btn btn-outline">Get in touch ↗</a>
+            <div class="hover-links">
+                <a class="hover-link" href="#skills"
+                    data-img="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Skills</div>
+                        <span class="hover-link-sub">Tools and technologies I work with</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="Skills">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#experience"
+                    data-img="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Experience</div>
+                        <span class="hover-link-sub">My professional journey so far</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80" alt="Experience">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#projects"
+                    data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Projects</div>
+                        <span class="hover-link-sub">Selected work I'm proud of</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Projects">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <a class="hover-link" href="#uiux"
+                    data-img="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">UI/UX</div>
+                        <span class="hover-link-sub">Designing intuitive, beautiful interfaces</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="UI/UX">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>
+                    </div>
+                </a>
+                <!---<a class="hover-link" href="#motion"
+                    data-img="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80">
+                    <div class="hover-link-left">
+                        <div class="hover-link-heading">Motion</div>
+                        <span class="hover-link-sub">Bringing interfaces to life with animation</span>
+                    </div>
+                    <img class="hover-link-img"
+                        src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80" alt="Motion">
+                    <div class="hover-link-arrow">
+                        <div class="hover-link-arrow-inner">→</div>-->
+            </div>
+            </a>
+        </div>
+        </div>
+    </section>
+
+    <!-- ─── WORK ─────────────────────────────────────── -->
+    <section class="work" id="work">
+        <div class="section-header">
+            <h2 class="section-title">Recent Work</h2>
+            <span class="section-count">(2026)</span>
+        </div>
+
+        <div class="work-grid">
+
+            <!-- Project 1 (wide) -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="skills">
+                    <p class="features-label">Skills</p>
+                    <div class="features-grid">
+
+                        <!-- Programming card -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">OOP</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">C#</span>
+                                    <span class="skill-tag">Node.js</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Programming</h3>
+                            </div>
+                        </div>
+
+                        <!-- Web & Front-End card -->
+                        <div class="feature-card" style="transition-delay:0.1s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Next.js</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">Responsive Design</span>
+                                    <span class="skill-tag">Mobile-First Design</span>
+                                    <span class="skill-tag">UI Layout</span>
+                                    <span class="skill-tag">Accessibility</span>
+                                    <span class="skill-tag">Flexbox &amp; Grid</span>
+                                    <span class="skill-tag">Basic Animation</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Web &amp; Front-End</h3>
+                            </div>
+                        </div>
+
+                        <!-- Tools & Technologies card -->
+                        <div class="feature-card" style="transition-delay:0.2s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">VS Code</span>
+                                    <span class="skill-tag">IntelliJ</span>
+                                    <span class="skill-tag">Git &amp; GitHub</span>
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">Fastify</span>
+                                    <span class="skill-tag">REST APIs</span>
+                                    <span class="skill-tag">QR Code Generation</span>
+                                    <span class="skill-tag">Power Automate</span>
+                                    <span class="skill-tag">SharePoint</span>
+                                    <span class="skill-tag">Shopify</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Tools &amp; Technologies</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 — Experience -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="experience">
+                    <p class="features-label">Experience</p>
+                    <div class="features-grid">
+
+                        <!-- Durham College card -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Power Automate</span>
+                                    <span class="skill-tag">SharePoint</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Project Assistant</h3>
+                                <p>Durham College — Oshawa, Ontario, Canada</p>
+                                <ul class="project-points">
+                                    <li>Full-Stack Integration: Orchestrated seamless data synchronization
+                                        between
+                                        Microsoft SharePoint, Lists, and external APIs, ensuring high data
+                                        availability
+                                        and referential integrity across the ecosystem
+                                    </li>
+                                    <li>Systems Analysis & Requirements Gathering: Acted as a technical
+                                        consultant for
+                                        cross-functional stakeholders to translate legacy administrative
+                                        processes into
+                                        robust, automated system requirements</li>
+                                    <li>Lifecycle Management & Optimization: Managed the full development
+                                        lifecycle
+                                        (SDLC) of automation flows, including rigorous unit testing,
+                                        performance
+                                        monitoring, and iterative debugging to ensure 99.9% uptime</li>
+                                    <li>Documentation & Knowledge Transfer: Authored comprehensive technical
+                                        documentation and system schemas to facilitate seamless ownership
+                                        transitions
+                                        and long-term maintainability</li>
+                                    <li>Monitored, tested, and optimized workflows to ensure reliability and
+                                        smooth
+                                        performance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <!-- Royal Distributing card -->
+                        <div class="feature-card" style="transition-delay:0.2s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">E-commerce</span>
+                                    <span class="skill-tag">Shopify</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>E-commerce & Customer service Clerk</h3>
+                                <p>Royal Distributing — Whitby, Ontario, Canada</p>
+                                <ul class="project-points">
+                                    <li>Multi-Platform Order Management: Managed the end-to-end order
+                                        lifecycle within
+                                        the Shopify backend, ensuring precise inventory tracking and data
+                                        synchronization to maintain 100% fulfillment accuracy</li>
+                                    <li>Strategic Conflict Resolution: Negotiated and resolved complex
+                                        customer
+                                        escalations by interpreting company policy through a client-centric
+                                        lens,
+                                        resulting in increased customer retention and positive brand
+                                        sentiment</li>
+                                    <li>Shopify Systems Administration: Utilized Shopify’s administrative
+                                        tools to
+                                        monitor order status, manage real-time inventory updates, and
+                                        streamline the
+                                        fulfillment process for high-volume digital storefronts</li>
+                                    <li>Platform Fulfillment & Tracking: Oversaw the Shopify fulfillment
+                                        module to track
+                                        complex orders and inventory movements, identifying and resolving
+                                        discrepancies
+                                        to ensure a seamless flow from purchase to delivery</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 — UI/UX -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="uiux">
+                    <p class="features-label">UI/UX</p>
+                    <div class="features-grid">
+
+                        <!-- LegacyLink UI/UX -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Mobile-First</span>
+                                    <span class="skill-tag">Accessibility</span>
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">Multi-step Wizard</span>
+                                    <span class="skill-tag">Dashboard Design</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>LegacyLink — Memorial UX</h3>
+                                <p>Freelance UI/UX Design</p>
+                                <p style="margin-bottom:0.5rem;"><a href="https://legacylinkstudio.com/" target="_blank" rel="noopener noreferrer" style="font-size:0.8rem; color:var(--color-blue); text-decoration:none; opacity:0.85; transition:var(--animation-fast);" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85">legacylinkstudio.com ↗</a></p>
+                                <ul class="project-points">
+                                    <li>Designed a dignified, minimalist public profile page optimised for outdoor use — high-contrast slate-on-white palette legible in harsh sunlight and patchy 3G coverage</li>
+                                    <li>Created a multi-step creation wizard (portrait upload → timeline builder → media &amp; privacy settings) with a live preview pane updating in real time</li>
+                                    <li>Designed the admin dashboard layout — sidebar navigation, memorial card grid, QR modal, plaque-status tracker, and analytics charts</li>
+                                    <li>Crafted the authentication flow (sign-in / create account tabs) and settings page with toggle-based notification controls and QR engine configuration</li>
+                                    <li>Defined a warm stone-grey design language across all surfaces to reinforce the platform's tone of quiet dignity and remembrance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 — Projects -->
+            <div class="work-item"
+                style="grid-column:span 2; aspect-ratio:unset; padding:0; overflow:visible; background:transparent; border-radius:0;">
+                <div class="project-one-features" id="projects">
+                    <p class="features-label">Projects</p>
+                    <div class="features-grid">
+
+                        <!-- Shopify POS Retail Workflow Optimization Suite -->
+                        <div class="feature-card" style="transition-delay:0s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Shopify POS UI Extensions API</span>
+                                    <span class="skill-tag">GraphQL Admin API</span>
+                                    <span class="skill-tag">Node.js</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>Shopify POS Retail Workflow Optimization Suite</h3>
+                                <p>Personal Project — Developer &amp; Architect</p>
+                                <p style="margin-bottom:0.75rem; font-size:0.875rem; line-height:1.5;">An advanced suite of four custom, production-ready POS extensions engineered to eliminate front-line retail bottlenecks, boost checkout speeds, and protect company asset data. Designed and validated field-for-field within a sandboxed Shopify Partner development environment.</p>
+                                <ul class="project-points">
+                                    <li><strong>Project Trace (Returns Verification):</strong> Implemented a "twin-track" lookup loop that uses encrypted payment signatures for card transactions and an automated 8-character token generator (TR-XXXXXX) for anonymous cash buyers. Safely resolves non-receipted returns while completely protecting customer privacy.</li>
+                                    <li><strong>Smart Search (Colloquial Lookup):</strong> Devised a localized tokenized search pipeline featuring bidirectional synonym expansion to bypass failed barcode scans. Employs catalog pre-computing, a 150ms debounce, and input guards to deliver sub-15ms search latencies on iPad hardware without external libraries.</li>
+                                    <li><strong>Profile Merger (Data Deduplication):</strong> Created a floor-ready data cleanup tool utilizing authenticated session tokens and server-side GraphQL customerMerge mutations. Merges duplicate accounts in under 60 seconds to unify fractured customer lifetime value (LTV) metrics right from the register.</li>
+                                    <li><strong>Status Card Form (Native Tax Exemption):</strong> Replaced an unstable external webpage overlay with a native 5-screen Navigator wizard, eliminating iPad virtual keyboard layout blocking ("blind typing"). Features continuous inline regex validation and automated Canadian postal code province inference.</li>
+                                </ul>
+                                <p style="margin-top:0.75rem; font-size:0.8rem; color:var(--color-gray); font-style:italic;">Engineered using a highly optimized, AI-assisted rapid prototyping workflow to accelerate boilerplate architecture and maximize development speed.</p>
+                            </div>
+                        </div>
+
+                        <!-- LegacyLink Project -->
+                        <div class="feature-card" style="transition-delay:0.1s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Fastify</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Next.js</span>
+                                    <span class="skill-tag">PostgreSQL</span>
+                                    <span class="skill-tag">Redis</span>
+                                    <span class="skill-tag">SVG Engine</span>
+                                    <span class="skill-tag">Edge Routing</span>
+                                    <span class="skill-tag">Freelance</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>LegacyLink — A Modern "Grief Tech" Platform</h3>
+                                <p>Freelance — Full-Stack Architect &amp; Solo Developer</p>
+                                <p style="margin-bottom:0.5rem;"><a href="https://legacylinkstudio.com/" target="_blank" rel="noopener noreferrer" style="font-size:0.8rem; color:var(--color-blue); text-decoration:none; opacity:0.85; transition:var(--animation-fast);" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85">legacylinkstudio.com ↗</a></p>
+                                <p style="margin-bottom:0.75rem; font-size:0.875rem; line-height:1.5;">A full-stack "Grief Tech" platform that bridges physical and digital memorialization. Weatherproof ceramic tombstone plaques become interactive living memorials — visitors scan a high-durability QR code to instantly access a mobile-first biography, photo gallery, interactive timeline, and digital guestbook.</p>
+                                <ul class="project-points">
+                                    <li><strong>Dynamic Edge Routing Layer:</strong> Architected an ultra-low-latency short-URL redirect system using Fastify and Redis caching at the edge. A compact 6-character shortId resolves incoming scans to the correct active profile in &lt;20ms — ensuring permanently engraved ceramic plaques never require reprinting, regardless of URL migrations or platform changes.</li>
+                                    <li><strong>Manufacturing-Ready QR Engine:</strong> Built a backend utility generating pure scalable SVG QR codes at Error Correction Level H (30% damage tolerance). Engineered precise padding, quiet zones, and vector optimization tailored for industrial laser-engraving and ceramic manufacturing workflows to prevent scan degradation from weathering or stone erosion.</li>
+                                    <li><strong>Real-Time Memorial Builder:</strong> Designed a multi-step admin wizard (portrait upload → life-timeline builder → media &amp; privacy settings) with a synchronized live-preview pane that updates in real time — letting families see exactly how the final memorial will render before publishing.</li>
+                                    <li><strong>Analytics, Ordering &amp; Premium Features:</strong> Shipped a comprehensive operations dashboard tracking physical scan-counts, geofenced scan locations, and plaque fulfillment pipelines. Premium modules include an interactive family tree panel, GPS-navigable burial mapping for large cemeteries, and a rich-media digital guestbook with custom lazy-loading image pipelines for instant mobile speeds on cellular cemetery networks.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- TransitAccess Project -->
+                        <div class="feature-card" style="transition-delay:0.2s">
+                            <div class="feature-visual skill-visual">
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React Native</span>
+                                    <span class="skill-tag">Next.js</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">Mapbox API</span>
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Hackathon</span>
+                                </div>
+                            </div>
+                            <div class="feature-card-body">
+                                <h3>TransitAccess: Inclusive Mobility &amp; Gamified Transit Platform</h3>
+                                <p>Front-End Engineer &amp; UI/UX Lead — Hackathon Project</p>
+                                <p style="margin-bottom:0.75rem; font-size:0.875rem; line-height:1.5;">An accessibility-first transit routing and navigation app built during a high-intensity hackathon. Blends complex geospatial data with an inclusive UI, incentivizing sustainable transit habits through a local business reward economy.</p>
+                                <ul class="project-points">
+                                    <li><strong>Inclusive UI/UX &amp; Real-Time Accessibility Routing:</strong> Led the front-end design and implementation of an inclusive routing interface with dynamic components for step-free pathfinding, real-time vehicle crowding indicators, and accessible boarding guidance. Integrated live transit API alerts to dynamically re-route users around physical barriers, delivering a WCAG-compliant, stress-free journey.</li>
+                                    <li><strong>Behavior-Driven Gamification Engine:</strong> Designed and coded a comprehensive gamification subsystem with interactive dashboards tracking loyalty points, daily streaks, unlocked achievements, and level progressions. Built "Weekly Challenges" modules with progress bars and micro-interactions that transformed routine transit habits into an engaging, habit-forming experience.</li>
+                                    <li><strong>Local Commerce Reward Redemption System:</strong> Engineered a mobile-first reward marketplace for exchanging transit points for local business discounts. Features categorized promotional offers, real-time balance calculations, and on-demand SVG QR code generation for contactless in-store scanning and merchant verification.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── CONTACT ──────────────────────────────────── -->
+    <section class="contact" id="contact">
+        <canvas id="particle-canvas" style="display:block;width:100%;margin-bottom:3rem;cursor:crosshair;"></canvas>
+        <div class="contact-links">
+            <a href="mailto:Jolin_ma@icloud.com" class="contact-link">Send an email ↗</a>
+            <a href="https://www.linkedin.com/in/jolin-ma-977aa739a/" class="contact-link" target="_blank"
+                rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/Jolin-ma/" class="contact-link" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ───────────────────────────────────── -->
+    <footer>
+        <span>© 2026 Jolin Ma — All rights reserved</span>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
+    </footer>
+
+    <script>
+        // Wrap each letter of hover-link headings in a span for stagger animation
+        document.querySelectorAll('.hover-link-heading').forEach(heading => {
+            heading.innerHTML = heading.textContent.split('').map((char, i) =>
+                `<span class="hl-letter" style="transition-delay:${0.25 + i * 0.04}s">${char === ' ' ? '&nbsp;' : char}</span>`
+            ).join('');
+        });
+
+        // ── Scroll reveal for feature cards ───────────
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.feature-card').forEach(el => revealObserver.observe(el));
+
+        // Spring-based image tracking
+        document.querySelectorAll('.hover-link').forEach(link => {
+            const img = link.querySelector('.hover-link-img');
+            let targetLeft = 50, targetTop = 50;
+            let currentLeft = 50, currentTop = 50;
+            let rafId, isHovering = false;
+
+            function tick() {
+                currentLeft += (targetLeft - currentLeft) * 0.12;
+                currentTop += (targetTop - currentTop) * 0.12;
+                img.style.left = currentLeft + '%';
+                img.style.top = currentTop + '%';
+                if (isHovering) rafId = requestAnimationFrame(tick);
+            }
+
+            link.addEventListener('mousemove', e => {
+                const rect = link.getBoundingClientRect();
+                const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+                const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+                targetLeft = 50 + xPct * 20;
+                targetTop = 50 - yPct * 20;
+            });
+
+            link.addEventListener('mouseenter', () => {
+                isHovering = true;
+                cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(tick);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                isHovering = false;
+                targetLeft = 50;
+                targetTop = 50;
+            });
+        });
+        // ── Particle text — contact section ──────────
+        (function () {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const mouse = { x: undefined, y: undefined, radius: 120 };
+            let particles = [], rafId;
+
+            class Particle {
+                constructor(x, y, color) {
+                    this.baseX = this.x = x;
+                    this.baseY = this.y = y;
+                    this.color = color;
+                    this.size = 2;
+                    this.density = Math.random() * 30 + 5;
+                }
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                update() {
+                    if (mouse.x === undefined) {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                        return;
+                    }
+                    const dx = mouse.x - this.x, dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                    const force = Math.max(0, (mouse.radius - dist) / mouse.radius);
+                    if (dist < mouse.radius) {
+                        this.x -= (dx / dist) * force * this.density;
+                        this.y -= (dy / dist) * force * this.density;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                }
+            }
+
+            function buildParticles() {
+                particles = [];
+                const fontSize = Math.min(canvas.width / 10, 95);
+                const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                grad.addColorStop(0, '#455CE9');
+                grad.addColorStop(0.5, '#91a0f5');
+                grad.addColorStop(1, '#455CE9');
+
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                ctx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
+                ctx.fillStyle = grad;
+                ctx.fillText("Let's work together.", canvas.width / 2, canvas.height / 2);
+
+                const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const gap = 5;
+                for (let y = 0; y < data.height; y += gap) {
+                    for (let x = 0; x < data.width; x += gap) {
+                        const idx = (y * data.width + x) * 4;
+                        if (data.data[idx + 3] > 128) {
+                            particles.push(new Particle(x, y,
+                                `rgb(${data.data[idx]},${data.data[idx + 1]},${data.data[idx + 2]})`));
+                        }
+                    }
+                }
+            }
+
+            function resize() {
+                const section = canvas.parentElement;
+                const fontSize = Math.min(section.offsetWidth / 13, 72);
+                canvas.width = section.offsetWidth;
+                canvas.height = Math.round(fontSize * 2.4);
+                canvas.style.height = canvas.height + 'px';
+                buildParticles();
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.draw(); p.update(); });
+                rafId = requestAnimationFrame(animate);
+            }
+
+            canvas.addEventListener('mousemove', e => {
+                const r = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / r.width;
+                const scaleY = canvas.height / r.height;
+                mouse.x = (e.clientX - r.left) * scaleX;
+                mouse.y = (e.clientY - r.top) * scaleY;
+            });
+            canvas.addEventListener('mouseleave', () => { mouse.x = undefined; mouse.y = undefined; });
+
+            window.addEventListener('resize', resize);
+            document.fonts.ready.then(() => { resize(); animate(); });
+        })();
+    </script>
+
+</body>
+
+</html>
