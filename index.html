@@ -1316,8 +1316,8 @@
                 const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                // Smaller gap on mobile so thin strokes at small font sizes aren't skipped
-                const gap = canvas.width < 600 ? 3 : 5;
+                // Smaller gap on mobile so thin 1-2px strokes aren't skipped between samples
+                const gap = canvas.width < 600 ? 2 : 5;
                 for (let y = 0; y < data.height; y += gap) {
                     for (let x = 0; x < data.width; x += gap) {
                         const idx = (y * data.width + x) * 4;
