@@ -665,13 +665,20 @@
 
         /* ─── RESPONSIVE ─────────────────────────────── */
         @media (max-width: 680px) {
-            .work-grid {
-                grid-template-columns: 1fr;
+            :root {
+                --section-padding: 8vh;
             }
 
-            .work-item:first-child {
-                grid-column: span 1;
-                aspect-ratio: 4 / 3;
+            /* Nav */
+            .nav-links {
+                gap: 1.2rem;
+            }
+
+            /* Hero */
+            .hero-location {
+                top: auto;
+                bottom: 6.5rem;
+                transform: none;
             }
 
             .hero-tagline {
@@ -682,9 +689,50 @@
                 display: none;
             }
 
+            /* About */
+            .hover-links {
+                margin-top: 2.5rem;
+            }
+
+            /* Work */
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item:first-child {
+                grid-column: span 1;
+                aspect-ratio: 4 / 3;
+            }
+
+            /* Contact */
             .contact-links {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+
+            /* Footer */
+            footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+
+        /* Touch devices — hover effects don't exist, show links as active */
+        @media (hover: none) {
+            .hover-link-heading {
+                color: var(--color-dark);
+            }
+
+            .hover-link-arrow-inner {
+                transform: translateX(0);
+                opacity: 0.35;
+                transition: none;
+            }
+
+            /* Hide the floating preview image — it's pointer-only */
+            .hover-link-img {
+                display: none;
             }
         }
     </style>
@@ -1273,6 +1321,17 @@
                 mouse.y = (e.clientY - r.top) * scaleY;
             });
             canvas.addEventListener('mouseleave', () => { mouse.x = undefined; mouse.y = undefined; });
+
+            canvas.addEventListener('touchmove', e => {
+                e.preventDefault();
+                const r = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / r.width;
+                const scaleY = canvas.height / r.height;
+                const t = e.touches[0];
+                mouse.x = (t.clientX - r.left) * scaleX;
+                mouse.y = (t.clientY - r.top) * scaleY;
+            }, { passive: false });
+            canvas.addEventListener('touchend', () => { mouse.x = undefined; mouse.y = undefined; });
 
             window.addEventListener('resize', resize);
             document.fonts.ready.then(() => { resize(); animate(); });
