@@ -1291,16 +1291,24 @@
 
             function buildParticles() {
                 particles = [];
-                const fontSize = Math.min(canvas.width / 10, 95);
+                let fontSize = Math.min(canvas.width / 10, 95);
+
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
+
+                // Scale down if text is wider than canvas
+                const measured = ctx.measureText("Let's work together.").width;
+                if (measured > canvas.width * 0.92) {
+                    fontSize *= (canvas.width * 0.92) / measured;
+                    ctx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
+                }
+
                 const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
                 grad.addColorStop(0, '#455CE9');
                 grad.addColorStop(0.5, '#91a0f5');
                 grad.addColorStop(1, '#455CE9');
 
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-
-                ctx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
                 ctx.fillStyle = grad;
                 ctx.fillText("Let's work together.", canvas.width / 2, canvas.height / 2);
 
@@ -1321,8 +1329,15 @@
 
             function resize() {
                 const section = canvas.parentElement;
-                const fontSize = Math.min(section.offsetWidth / 13, 72);
                 canvas.width = section.offsetWidth;
+                // Match the font-size logic in buildParticles so canvas height is tall enough
+                let fontSize = Math.min(canvas.width / 10, 95);
+                const tempCtx = canvas.getContext('2d');
+                tempCtx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
+                const measured = tempCtx.measureText("Let's work together.").width;
+                if (measured > canvas.width * 0.92) {
+                    fontSize *= (canvas.width * 0.92) / measured;
+                }
                 canvas.height = Math.round(fontSize * 2.4);
                 canvas.style.height = canvas.height + 'px';
                 buildParticles();
