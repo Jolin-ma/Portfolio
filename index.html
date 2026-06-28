@@ -1106,7 +1106,6 @@
                                     <li><strong>Profile Merger (Data Deduplication):</strong> Created a floor-ready data cleanup tool utilizing authenticated session tokens and server-side GraphQL customerMerge mutations. Merges duplicate accounts in under 60 seconds to unify fractured customer lifetime value (LTV) metrics right from the register.</li>
                                     <li><strong>Status Card Form (Native Tax Exemption):</strong> Replaced an unstable external webpage overlay with a native 5-screen Navigator wizard, eliminating iPad virtual keyboard layout blocking ("blind typing"). Features continuous inline regex validation and automated Canadian postal code province inference.</li>
                                 </ul>
-                                <p style="margin-top:0.75rem; font-size:0.8rem; color:var(--color-gray); font-style:italic;">Engineered using a highly optimized, AI-assisted rapid prototyping workflow to accelerate boilerplate architecture and maximize development speed.</p>
                             </div>
                         </div>
 
@@ -1289,33 +1288,36 @@
                 }
             }
 
+            function calcFontSize(w) {
+                // Measure in a temporary off-screen canvas so we don't disturb the main one
+                const tmp = document.createElement('canvas').getContext('2d');
+                let fs = Math.min(w / 10, 95);
+                tmp.font = `300 ${fs}px 'DM Sans', sans-serif`;
+                const tw = tmp.measureText("Let's work together.").width;
+                if (tw > w * 0.92) fs *= (w * 0.92) / tw;
+                return fs;
+            }
+
             function buildParticles() {
                 particles = [];
-                let fontSize = Math.min(canvas.width / 10, 95);
+                const fontSize = calcFontSize(canvas.width);
 
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
 
-                // Scale down if text is wider than canvas
-                const measured = ctx.measureText("Let's work together.").width;
-                if (measured > canvas.width * 0.92) {
-                    fontSize *= (canvas.width * 0.92) / measured;
-                    ctx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
-                }
-
                 const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
                 grad.addColorStop(0, '#455CE9');
                 grad.addColorStop(0.5, '#91a0f5');
                 grad.addColorStop(1, '#455CE9');
-
                 ctx.fillStyle = grad;
                 ctx.fillText("Let's work together.", canvas.width / 2, canvas.height / 2);
 
                 const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                const gap = 5;
+                // Smaller gap on mobile so thin strokes at small font sizes aren't skipped
+                const gap = canvas.width < 600 ? 3 : 5;
                 for (let y = 0; y < data.height; y += gap) {
                     for (let x = 0; x < data.width; x += gap) {
                         const idx = (y * data.width + x) * 4;
@@ -1328,17 +1330,10 @@
             }
 
             function resize() {
-                const section = canvas.parentElement;
-                canvas.width = section.offsetWidth;
-                // Match the font-size logic in buildParticles so canvas height is tall enough
-                let fontSize = Math.min(canvas.width / 10, 95);
-                const tempCtx = canvas.getContext('2d');
-                tempCtx.font = `300 ${fontSize}px 'DM Sans', sans-serif`;
-                const measured = tempCtx.measureText("Let's work together.").width;
-                if (measured > canvas.width * 0.92) {
-                    fontSize *= (canvas.width * 0.92) / measured;
-                }
-                canvas.height = Math.round(fontSize * 2.4);
+                const w = canvas.parentElement.clientWidth;
+                const fontSize = calcFontSize(w);
+                canvas.width = w;
+                canvas.height = Math.round(fontSize * 2.8);
                 canvas.style.height = canvas.height + 'px';
                 buildParticles();
             }
