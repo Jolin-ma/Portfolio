@@ -724,21 +724,28 @@
             }
         }
 
-        /* Touch devices — hover effects don't exist, show links as active */
+        /* Touch devices — replace hover with tap class, hide pointer-only image */
         @media (hover: none) {
-            .hover-link-heading {
-                color: var(--color-dark);
-            }
-
-            .hover-link-arrow-inner {
-                transform: translateX(0);
-                opacity: 0.35;
-                transition: none;
-            }
-
-            /* Hide the floating preview image — it's pointer-only */
             .hover-link-img {
                 display: none;
+            }
+
+            .hover-link.is-tapped .hover-link-heading {
+                color: var(--color-dark);
+                transform: translateX(-1rem);
+            }
+
+            .hover-link.is-tapped .hl-letter {
+                transform: translateX(1rem);
+            }
+
+            .hover-link.is-tapped .hover-link-arrow-inner {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            .hover-link.is-tapped {
+                border-color: var(--color-dark);
             }
         }
     </style>
@@ -1230,6 +1237,14 @@
                 isHovering = false;
                 targetLeft = 50;
                 targetTop = 50;
+            });
+
+            // Tap animation for touch devices
+            link.addEventListener('touchstart', () => {
+                link.classList.add('is-tapped');
+            }, { passive: true });
+            link.addEventListener('touchend', () => {
+                setTimeout(() => link.classList.remove('is-tapped'), 500);
             });
         });
         // ── Particle text — contact section ──────────
