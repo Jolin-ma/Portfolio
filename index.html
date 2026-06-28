@@ -675,11 +675,16 @@
                 gap: 1.2rem;
             }
 
-            /* Hero */
+            /* Hero: cover so image fills the full viewport instead of leaving blank space */
+            .hero-image {
+                object-fit: cover;
+                object-position: center top;
+            }
+
             .hero-location {
-                top: auto;
-                bottom: 6.5rem;
-                transform: none;
+                top: 50%;
+                bottom: auto;
+                transform: translateY(-60%);
             }
 
             .hero-tagline {
