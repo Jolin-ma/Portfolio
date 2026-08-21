@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jolin Ma — Product Designer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62,900&family=Archivo+Black&family=Architects+Daughter&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@500;700&family=Chewy&family=Inter:wght@400;500;600;700;800;900&family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cyan:   '#36c5f0',
+          gold:   '#ecb22e',
+          grass:  '#2eb67d',
+          rose:   '#e01e5a',
+          ink:    '#111212',
+          cocoa:  '#522e29',
+          'cyan-soft':  '#a4e5f8',
+          'grass-soft': '#a1dfc5',
+          'rose-soft':  '#fabed1',
+          'gold-soft':  '#f5dda1',
+          'grey-100': '#f1f1f1',
+          'grey-200': '#ededed',
+          'grey-300': '#c6c6c7',
+          'grey-400': '#aaabab',
+          'grey-500': '#767777',
+          'grey-600': '#454747',
+        },
+        fontFamily: {
+          display: ['Archivo', '"Archivo Black"', 'Impact', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+          hand: ['Caveat', 'cursive'],
+          mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+          marker: ['"Architects Daughter"', 'cursive'],
+          bubble: ['Chewy', '"Archivo Black"', 'sans-serif'],
+          pixel: ['"Pixelify Sans"', '"Archivo Black"', 'sans-serif'],
+        },
+      },
+    },
+  }
+</script>
+<style>
+  /* design tokens, as provided by the source design */
+  :root {
+    --token-1892785e-8581-4826-b411-015017430ad3: #36c5f0;
+    --token-29f9695a-09e2-4c55-ace7-e9873233e207: #ecb22e;
+    --token-5572d352-4df4-4ec3-ad7e-a66a084483f0: #2eb67d;
+    --token-e22e0fe6-83a6-4381-a625-c6f173619c49: #e01e5a;
+    --token-f3fe21e3-0094-4480-b0bd-3d122b4528c2: #f1f1f1;
+    --token-eee4728f-06ef-4d99-9d02-ac8944e7f6dd: #ededed;
+    --token-0aa568ec-3cf9-436c-a43a-7190c1309ca5: #c6c6c7;
+    --token-8d85ac4c-48a8-4cd1-a641-810c723e95b1: #aaabab;
+    --token-94d217a4-b19e-496f-a9f0-41c83f611b07: #767777;
+    --token-9aa8d99c-a5bb-4541-a292-62e252d963bf: #454747;
+    --token-4f4ed186-9023-4858-830a-5202d69249c1: #111212;
+    --token-341b58e0-d728-43ce-a1dc-e77a522cab4f: #fff;
+    --token-35988afc-fafd-4260-9962-57ff14cb1fea: #522e29;
+    --token-a40bc7b7-fed8-4930-b9f7-5dc39bc097a2: #a4e5f8;
+    --token-3b25897c-a78c-4fb0-9a93-831975a769c1: #a1dfc5;
+    --token-221f5458-30ad-42f0-b005-7c3d9fe30e8d: #fabed1;
+    --token-cd9da077-16e0-46f3-9a80-6bf4c2a79928: #f5dda1;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    height: auto;
+    background-color: var(--token-341b58e0-d728-43ce-a1dc-e77a522cab4f, #fff);
+    background-image: repeating-linear-gradient(to right, #f5f5f5 0 1px, transparent 1px 100px);
+    color: var(--token-4f4ed186-9023-4858-830a-5202d69249c1, #111212);
+  }
+  .display { font-family: 'Archivo', 'Archivo Black', Impact, sans-serif;
+             font-variation-settings: 'wdth' 62, 'wght' 900; font-weight: 900; letter-spacing: -0.01em; }
+  .dot { display: inline-block; border-radius: 9999px; vertical-align: middle; }
+  /* folder tab: the slanted shoulder that joins tab to card body */
+  .tab-slant { clip-path: polygon(0 0, 100% 100%, 0 100%); }
+  /* dog-eared folder-tag chip used for project category labels + the JPG badge icon */
+  .tag-folder { clip-path: polygon(0 0, 76% 0, 100% 26%, 100% 100%, 0 100%); }
+  /* gentle out-of-phase drift for tags floating around the hero name */
+  @keyframes float-a { 0%, 100% { transform: translate(0,0) rotate(-8deg); } 50% { transform: translate(-0.9vw,-2.4vw) rotate(-2deg); } }
+  @keyframes float-b { 0%, 100% { transform: translate(0,0) rotate(4deg); } 50% { transform: translate(0.9vw,2.4vw) rotate(11deg); } }
+  .float-a { animation: float-a 5.4s ease-in-out infinite; }
+  .float-b { animation: float-b 6.2s ease-in-out infinite 0.4s; }
+
+  /* skill-icon animations: spin, blink, pulse, twinkle */
+  @keyframes icon-spin { to { transform: rotate(360deg); } }
+  .icon-spin { animation: icon-spin 5s linear infinite; transform-origin: 50% 50%; }
+
+  @keyframes icon-blink { 0%, 88%, 100% { transform: scaleY(1); } 94% { transform: scaleY(0.08); } }
+  .icon-blink { animation: icon-blink 3.2s ease-in-out infinite; transform-origin: 50% 50%; }
+
+  @keyframes icon-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: 0.75; } }
+  .icon-pulse { animation: icon-pulse 1.6s ease-in-out infinite; transform-origin: 50% 50%; }
+
+  @keyframes icon-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+  .icon-twinkle { animation: icon-twinkle 1.4s ease-in-out infinite; }
+
+  /* ── projects: folder cards stack ──────────────────────────────────────────
+     each card sticks at the same offset, so scrolling slides the next card up
+     over the last until all four sit in one pile. the tab rows all share the
+     same height and every card carries invisible placeholder tabs for the
+     projects before it, so the stacked tabs step across and stay readable.
+     covered cards scale down a touch and take a scrim (--dim, driven by JS). */
+  .stack-card {
+    position: sticky;
+    top: 4vw;
+    transform-origin: 50% 4.2vw;
+    will-change: transform;
+  }
+  .stack-body { position: relative; }
+  .stack-body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    border-radius: inherit;
+    pointer-events: none;
+    background: rgba(0, 0, 0, var(--dim, 0));
+  }
+  /* narrow viewports wrap each card into two stacked columns, making them
+     taller than the screen — piling those would clip content, so opt out */
+  @media (max-width: 900px) {
+    .stack-card { position: static; transform: none; }
+    .stack-body::after { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stack-card { transform: none !important; }
+  }
+</style>
+</head>
+<body class="font-sans">
+
+<!-- live cursor, styled like a multiplayer-editing indicator; follows the real pointer.
+     dot + label are separate elements (label eases behind the dot), and both use
+     mix-blend-mode:difference so they invert against whatever's underneath, black included -->
+<div id="you-cursor-dot" class="pointer-events-none fixed left-0 top-0 z-[999] hidden h-[1.8vw] w-[1.8vw] bg-white" style="clip-path: polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%); mix-blend-mode: difference;"></div>
+<div id="you-cursor-label" class="pointer-events-none fixed left-0 top-0 z-[999] hidden whitespace-nowrap rounded-[0.5vw] bg-white px-[1.1vw] py-[0.35vw] font-mono text-[max(11px,1.3vw)] font-bold uppercase tracking-[0.1em] text-black" style="mix-blend-mode: difference; isolation: isolate;">You</div>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<header class="relative z-50 w-full bg-white">
+
+  <!-- bar -->
+  <div class="flex items-center justify-between px-[1vw] pt-[0.75vw] pb-[0.85vw]">
+    <div class="flex items-center gap-[1vw]">
+      <a href="#" aria-label="Jolin Ma — home" class="block">
+        <svg class="h-[1.6vw] w-[1.6vw]" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <g stroke="#111212" stroke-width="3.2" stroke-linecap="round">
+            <path d="M4 33a15 15 0 0 1 30 0"/>
+            <path d="M10 33a9 9 0 0 1 18 0"/>
+            <path d="M16 33a3.4 3.4 0 0 1 6.8 0"/>
+          </g>
+        </svg>
+      </a>
+      <span class="block h-[1.4vw] w-px bg-grey-300"></span>
+    </div>
+
+    <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel"
+            class="flex items-center gap-[0.8vw] border-[0.14vw] border-ink px-[1.3vw] py-[0.65vw] font-mono text-[max(8px,1.05vw)] font-medium uppercase tracking-[0.14em] text-ink">
+      <span id="menu-label">Menu</span>
+      <svg id="menu-icon-open" class="h-[1.2vw] w-[1.5vw]" viewBox="0 0 20 16" aria-hidden="true">
+        <g stroke="#111212" stroke-width="2.6" stroke-linecap="round">
+          <path d="M2 5h16"/><path d="M2 11h16"/>
+        </g>
+      </svg>
+      <svg id="menu-icon-close" class="hidden h-[1.2vw] w-[1.5vw]" viewBox="0 0 20 16" aria-hidden="true">
+        <g stroke="#111212" stroke-width="2.6" stroke-linecap="round">
+          <path d="M4 2.5l12 11"/><path d="M16 2.5l-12 11"/>
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ruler: ticks + numbers drift horizontally as the cursor moves -->
+  <div id="ruler" class="relative h-[2.7vw] overflow-hidden border-b border-grey-300">
+    <div id="ruler-track" class="ruler-track absolute inset-0 will-change-transform"
+         style="background-image:
+                  repeating-linear-gradient(to right, #c6c6c7 0 1px, transparent 1px 100px),
+                  repeating-linear-gradient(to right, #dedede 0 1px, transparent 1px 50px);
+                background-size: 100% 46%, 100% 24%;
+                background-repeat: repeat-x;
+                background-position: 0 0.3vw, 0 0.3vw;">
+      <div id="ruler-nums" class="ruler-nums absolute inset-x-0 top-[1.5vw] h-[1vw] font-mono text-[max(7px,0.78vw)] text-grey-300"></div>
+    </div>
+  </div>
+
+  <!-- menu panel: overlays the ruler and the top of the page -->
+  <div id="menu-panel" class="absolute inset-x-0 top-[4.7vw] hidden border-b border-grey-300 bg-white">
+    <a href="#" class="flex items-center gap-[1.8vw] bg-cyan px-[2.2vw] py-[1.55vw] font-mono text-[max(9px,1.15vw)] font-medium uppercase tracking-[0.18em] text-ink">
+      <svg class="h-[2.2vw] w-[2.2vw]" viewBox="0 0 24 24" fill="#111212" aria-hidden="true"><path d="M12 2.6 22.5 12h-3v9.4h-5.2v-6h-4.6v6H4.5V12h-3z"/></svg>
+      Home
+    </a>
+    <a href="#about" class="flex items-center gap-[1.8vw] px-[2.2vw] py-[1.55vw] font-mono text-[max(9px,1.15vw)] font-medium uppercase tracking-[0.18em] text-ink hover:bg-grey-100">
+      <svg class="h-[2.2vw] w-[2.2vw]" viewBox="0 0 24 24" aria-hidden="true"><g stroke="#111212" stroke-width="3" stroke-linecap="round"><path d="M12 3.5v17"/><path d="M4.6 7.8l14.8 8.4"/><path d="M19.4 7.8L4.6 16.2"/></g></svg>
+      About
+    </a>
+    <a href="#work" class="flex items-center gap-[1.8vw] px-[2.2vw] py-[1.55vw] font-mono text-[max(9px,1.15vw)] font-medium uppercase tracking-[0.18em] text-ink hover:bg-grey-100">
+      <svg class="h-[2.2vw] w-[2.2vw]" viewBox="0 0 24 24" fill="#111212" aria-hidden="true"><path d="M2.5 7h19v3.2a1.8 1.8 0 0 0 0 3.6V17h-19v-3.2a1.8 1.8 0 0 0 0-3.6z"/></svg>
+      Case Study
+    </a>
+    <a href="#work" class="flex items-center gap-[1.8vw] px-[2.2vw] py-[1.55vw] font-mono text-[max(9px,1.15vw)] font-medium uppercase tracking-[0.18em] text-ink hover:bg-grey-100">
+      <svg class="h-[2.2vw] w-[2.2vw]" viewBox="0 0 24 24" fill="#111212" aria-hidden="true"><path d="M3 14h5v7H3zM10.5 9h5v12h-5zM18 3.5h3.5V21H18z"/></svg>
+      Playground
+    </a>
+
+    <div class="flex items-center justify-end gap-[1.1vw] px-[2.2vw] py-[1.6vw]">
+      <a href="mailto:hello@jolinma.com" aria-label="Email"
+         class="grid h-[3.4vw] w-[3.4vw] place-items-center rounded-full bg-grey-100 font-mono text-[max(8px,1vw)] uppercase tracking-[0.08em] text-grey-500">Em</a>
+      <a href="tel:+13120000000" aria-label="Phone"
+         class="grid h-[3.4vw] w-[3.4vw] place-items-center rounded-full bg-grey-100 font-mono text-[max(8px,1vw)] uppercase tracking-[0.08em] text-grey-500">Ph</a>
+      <a href="#contact" class="flex items-center gap-[0.9vw] border-[0.15vw] border-ink px-[1.5vw] py-[0.85vw] font-mono text-[max(9px,1.15vw)] font-medium uppercase tracking-[0.14em] text-ink">
+        <svg class="h-[1.5vw] w-[1.5vw]" viewBox="0 0 24 24" fill="#111212" aria-hidden="true"><path d="M12 21S3 14.6 3 8.9A5.1 5.1 0 0 1 12 5.8 5.1 5.1 0 0 1 21 8.9C21 14.6 12 21 12 21z"/></svg>
+        Contact
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="relative px-[3%] pt-[1.8vw] pb-[3vw] text-center">
+
+  <p id="clock" class="font-mono text-[max(10px,1.5vw)] tracking-[0.12em] text-ink">--:--:-- --</p>
+
+  <!-- sticky-note intro: current/previous roles + handwritten "my name is" -->
+  <div class="relative mx-auto mt-[5vw] h-[9vw] max-w-[90%]">
+    <span class="absolute left-[13%] top-[1.4vw] z-10 rotate-[8deg] whitespace-nowrap rounded-[0.5vw] bg-grass-soft px-[1.6vw] py-[0.9vw] text-[1.5vw] font-semibold text-ink shadow-[0_0.3vw_0.6vw_rgba(0,0,0,0.08)]">
+      Computer Programming Student
+    </span>
+    <span class="absolute left-[54%] top-[2.6vw] z-0 -rotate-[5deg] whitespace-nowrap rounded-[0.5vw] bg-gold-soft px-[1.6vw] py-[0.9vw] text-[1.5vw] font-semibold text-ink shadow-[0_0.3vw_0.6vw_rgba(0,0,0,0.08)]">
+      Front-End Developer & Software Developer
+    </span>
+    <span class="absolute left-1/2 top-0 z-20 flex -translate-x-1/2 flex-col items-center whitespace-nowrap font-marker text-[1.9vw] text-ink">
+      my name is
+      <svg class="mt-[0.1vw] w-[5.4vw]" viewBox="0 0 100 10" fill="none" aria-hidden="true">
+        <path d="M2 3h96" stroke="#111212" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M2 7h96" stroke="#111212" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </span>
+  </div>
+
+  <!-- name inside a Figma-style selection frame, with collaborator avatars + role/location tags floating around it -->
+  <div class="relative mx-auto mt-[3.6vw] w-fit">
+    <span class="group absolute -left-[19.2vw] top-[8.4vw] z-20 h-[7.2vw] w-[7.2vw]">
+      <span class="absolute inset-0 -rotate-45 rounded-[50%_50%_50%_0] bg-cyan-soft"></span>
+      <img src="image/me.png" alt="Jolin Ma" class="absolute inset-[0.55vw] rounded-full object-cover" style="width: calc(100% - 1.1vw); height: calc(100% - 1.1vw);">
+      <!-- chat bubble tooltip, shown on hover -->
+      <span class="pointer-events-none absolute left-1/2 -top-[1vw] -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-[0.7vw] border-[0.15vw] border-ink bg-white px-[1.3vw] py-[0.7vw] font-mono text-[max(9px,1.15vw)] font-bold text-ink opacity-0 shadow-[0_0.3vw_0.7vw_rgba(0,0,0,0.18)] transition-opacity duration-200 group-hover:opacity-100">
+        hello my friend
+        <span class="absolute left-[1.4vw] top-full h-[0.9vw] w-[0.9vw] -translate-y-1/2 rotate-45 border-b-[0.15vw] border-r-[0.15vw] border-ink bg-white"></span>
+      </span>
+    </span>
+    <span class="group absolute -right-[19.2vw] top-[19.1vw] z-20 h-[7.2vw] w-[7.2vw]">
+      <span class="absolute inset-0 -rotate-45 rounded-[50%_50%_50%_0] bg-cyan-soft"></span>
+      <img src="image/me.png" alt="Jolin Ma" class="absolute inset-[0.55vw] rounded-full object-cover" style="width: calc(100% - 1.1vw); height: calc(100% - 1.1vw);">
+      <!-- chat bubble tooltip, shown on hover -->
+      <span class="pointer-events-none absolute left-1/2 -top-[1vw] -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-[0.7vw] border-[0.15vw] border-ink bg-white px-[1.3vw] py-[0.7vw] font-mono text-[max(9px,1.15vw)] font-bold text-ink opacity-0 shadow-[0_0.3vw_0.7vw_rgba(0,0,0,0.18)] transition-opacity duration-200 group-hover:opacity-100">
+        nice to meet you
+        <span class="absolute left-[1.4vw] top-full h-[0.9vw] w-[0.9vw] -translate-y-1/2 rotate-45 border-b-[0.15vw] border-r-[0.15vw] border-ink bg-white"></span>
+      </span>
+    </span>
+
+    <!-- floats clear of the name on the left, regardless of the tag's own text width -->
+    <span class="float-a absolute right-full top-[30%] z-10 mr-[2.2vw]">
+      <span class="relative -rotate-[8deg] whitespace-nowrap rounded-full border-[0.14vw] border-ink bg-gold px-[1.8vw] py-[0.9vw] font-mono text-[max(8px,1.15vw)] font-bold uppercase tracking-[0.1em] text-ink shadow-[0_0.4vw_0.8vw_rgba(0,0,0,0.12)]">
+        Product designer
+      </span>
+      <svg class="absolute -right-[2.2vw] top-[30%] w-[1.7vw] rotate-[90deg]" viewBox="0 0 20 20" fill="#ecb22e" stroke="#111212" stroke-width="1" aria-hidden="true"><path d="M2 1l16 6.5-6.7 1.8L9.5 16z"/></svg>
+    </span>
+    <!-- floats clear of the name on the right, offset timing so the two drift out of sync -->
+    <span class="float-b absolute left-full top-[50%] z-10 ml-[2.2vw]">
+      <span class="relative rotate-[4deg] whitespace-nowrap rounded-full bg-rose px-[1.8vw] py-[0.9vw] font-mono text-[max(8px,1.15vw)] font-bold uppercase tracking-[0.1em] text-white shadow-[0_0.4vw_0.8vw_rgba(0,0,0,0.12)]">
+        Located Oshawa,Canada,ON
+      </span>
+      <svg class="absolute -left-[2.2vw] top-[30%] w-[1.7vw] -rotate-[90deg] scale-x-[-1]" viewBox="0 0 20 20" fill="#e01e5a" stroke="#111212" stroke-width="1" aria-hidden="true"><path d="M2 1l16 6.5-6.7 1.8L9.5 16z"/></svg>
+    </span>
+
+    <h1 class="font-pixel px-[1.4vw] text-[13.5vw] leading-[1.05]">JOLIN</h1>
+    <span class="pointer-events-none absolute inset-0 border-[0.16vw] border-cyan"></span>
+    <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1vw] w-[1vw] rounded-[0.15vw] border-[0.16vw] border-white bg-cyan"></span>
+    <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1vw] w-[1vw] rounded-[0.15vw] border-[0.16vw] border-white bg-cyan"></span>
+    <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1vw] w-[1vw] rounded-[0.15vw] border-[0.16vw] border-white bg-cyan"></span>
+    <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1vw] w-[1vw] rounded-[0.15vw] border-[0.16vw] border-white bg-cyan"></span>
+  </div>
+
+  <p class="mt-[1.6vw] flex items-center justify-center gap-[0.6vw] text-[max(9px,1.3vw)] uppercase tracking-[0.1em] text-black-400">
+    <span class="dot h-[0.9vw] w-[0.9vw] bg-cyan"></span> available for thoughtful projects
+  </p>
+
+  <p class="mx-auto mt-[9vw] max-w-[60%] text-[2.6vw] font-bold leading-[1.28] tracking-[-0.02em]">
+    I design
+    <svg class="inline-block h-[1.7vw] w-[1.7vw] align-middle" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <circle cx="20" cy="20" r="17" stroke="#2eb67d" stroke-width="3"/>
+      <circle cx="20" cy="20" r="9.5" stroke="#2eb67d" stroke-width="3"/>
+    </svg>
+    outstanding<br>digital products
+    <span class="align-middle text-[1.7vw] text-rose">✿</span>.
+  </p>
+
+  <a href="#contact" class="mt-[3vw] inline-flex items-center gap-[1.2vw] rounded-[0.7vw] bg-ink p-[0.6vw] pr-[2vw]">
+    <span class="grid h-[4.2vw] w-[4.2vw] place-items-center rounded-[0.4vw] bg-rose">
+      <span class="grid h-[3.1vw] w-[3.1vw] place-items-center rounded-full bg-cyan">
+        <svg class="h-[1.5vw] w-[1.5vw]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M2 5l8 7-8 7" stroke="#111212" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 5l8 7-8 7" stroke="#111212" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </span>
+    <span class="font-mono text-[max(10px,1.5vw)] font-bold uppercase tracking-[0.15em] text-white">Contact me</span>
+  </a>
+
+  <svg class="mt-[2.8vw] w-full" viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 88C360 8 1080 8 1440 88" stroke="#ededed" stroke-width="2"/>
+  </svg>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about" class="relative px-[3%] pb-[8vw] text-center">
+  <p class="absolute left-[3%] top-[12vw] -rotate-[8deg] font-hand text-[4vw] leading-none text-grey-400">about me!</p>
+
+  <!-- "what's up" tag, also drawn as a selected object -->
+  <div class="relative mt-[14vw] inline-block">
+    <span class="block border border-grey-300 px-[4vw] py-[2.2vw] text-[4.6vw] font-medium leading-none text-black-600">what&rsquo;s up</span>
+    <span class="absolute -left-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.16vw] border-grey-400 bg-white"></span>
+    <span class="absolute -right-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.16vw] border-grey-400 bg-white"></span>
+    <span class="absolute -bottom-[0.4vw] -left-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.16vw] border-grey-400 bg-white"></span>
+    <span class="absolute -bottom-[0.4vw] -right-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.16vw] border-grey-400 bg-white"></span>
+  </div>
+
+  <p class="mx-auto mt-[3.3vw] max-w-[90%] text-[3.6vw] font-bold leading-[1.21] tracking-[-0.02em]">
+    I&rsquo;m Jolin Ma
+    <img src="image/me.png" alt="Jolin Ma" class="inline-block h-[3.2vw] w-[3.2vw] align-middle rounded-[0.3vw] object-cover">
+    a product designer
+    in Oshawa<br>who gets excited
+    <span class="inline-grid h-[2.7vw] w-[2.7vw] grid-cols-2 grid-rows-2 place-items-center gap-[0.15vw] align-middle">
+      <span class="block h-[0.9vw] w-[0.9vw] rotate-45 rounded-[0.1vw] bg-gold"></span>
+      <span class="block h-[0.9vw] w-[0.9vw] rotate-45 rounded-[0.1vw] bg-gold"></span>
+      <span class="block h-[0.9vw] w-[0.9vw] rotate-45 rounded-[0.1vw] bg-gold"></span>
+      <span class="block h-[0.9vw] w-[0.9vw] rotate-45 rounded-[0.1vw] bg-gold"></span>
+    </span>
+    about making complicated things
+    simple
+    <svg class="inline-block h-[2.1vw] w-[1.8vw] align-middle" viewBox="0 0 30 40" fill="#e01e5a" aria-hidden="true">
+      <path d="M3 2h24c2 6-6 8-6 18s8 12 6 18H3c-2-6 6-8 6-18S1 8 3 2Z"/>
+    </svg>.
+  </p>
+
+  <!-- polaroids -->
+  <div class="mt-[6.8vw] flex items-start justify-center gap-[1.4vw]">
+    <figure class="-rotate-[7deg] rounded-[0.5vw] bg-white p-[0.9vw] pb-[1.7vw] shadow-[0_0.8vw_1.7vw_rgba(0,0,0,0.13)]">
+      <img src="image/me.png" alt="Jolin Ma" class="h-[18vw] w-[19vw] rounded-[0.2vw] object-cover">
+      <figcaption class="mt-[0.7vw] font-hand text-[1.3vw] font-bold leading-none text-gold">2026</figcaption>
+    </figure>
+    <figure class="rotate-[6deg] rounded-[0.5vw] bg-white p-[0.9vw] pb-[1.7vw] shadow-[0_0.8vw_1.7vw_rgba(0,0,0,0.13)]">
+      <img src="https://placehold.co/760x720/dcdcd7/dcdcd7?text=+" alt="The studio desk" class="h-[18vw] w-[19vw] rounded-[0.2vw] object-cover">
+      <figcaption class="mt-[0.7vw] text-right font-hand text-[1.1vw] leading-none text-grey-400">my workspace</figcaption>
+    </figure>
+  </div>
+
+  <!-- skills -->
+  <div class="mx-auto mt-[5.9vw] flex flex-col items-center gap-[0.7vw]">
+    <div class="flex items-center gap-[0.7vw]">
+      <span class="display rounded-[0.25vw] bg-gold px-[1.5vw] py-[0.75vw] text-[2.9vw] leading-none text-ink">Interaction Design</span>
+      <span class="flex h-[6vw] w-[6vw] shrink-0 items-center justify-center overflow-hidden rounded-[0.15vw] border-[0.14vw] border-dashed border-ink bg-gold p-[0.7vw]">
+        <span class="icon-spin grid grid-cols-2 grid-rows-2 place-items-center gap-[0.3vw]">
+          <span class="block h-[1.7vw] w-[1.7vw] rotate-45 rounded-[0.15vw] bg-ink"></span>
+          <span class="block h-[1.7vw] w-[1.7vw] rotate-45 rounded-[0.15vw] bg-ink"></span>
+          <span class="block h-[1.7vw] w-[1.7vw] rotate-45 rounded-[0.15vw] bg-ink"></span>
+          <span class="block h-[1.7vw] w-[1.7vw] rotate-45 rounded-[0.15vw] bg-ink"></span>
+        </span>
+      </span>
+      <span class="display rounded-[0.25vw] bg-grass px-[1.5vw] py-[0.75vw] text-[2.9vw] leading-none text-ink">Prototyping</span>
+      <svg class="h-[6vw] w-[6vw] shrink-0 rounded-[0.15vw] bg-grass" viewBox="0 0 100 100" aria-hidden="true">
+        <g stroke="#111212" stroke-width="4" stroke-linecap="round">
+          <path d="M50 4v14M50 82v14M4 50h14M82 50h14M17 17l10 10M73 73l10 10M17 83l10-10M73 27l10-10"/>
+        </g>
+        <circle class="icon-pulse" cx="50" cy="50" r="17" fill="#e01e5a"/>
+      </svg>
+    </div>
+    <div class="flex items-center gap-[0.7vw]">
+      <span class="display rounded-[0.25vw] bg-rose px-[1.5vw] py-[0.75vw] text-[2.9vw] leading-none text-white">User Research</span>
+      <svg class="icon-blink h-[6vw] w-[6vw] shrink-0 rounded-[0.15vw] bg-rose p-[1.2vw]" viewBox="0 0 100 60" aria-hidden="true">
+        <path d="M2 30C18 6 82 6 98 30 82 54 18 54 2 30Z" fill="#fff"/>
+        <circle cx="50" cy="30" r="15" fill="#ecb22e"/>
+        <rect x="44" y="24" width="12" height="12" rx="2" fill="#111212" transform="rotate(20 50 30)"/>
+      </svg>
+      <span class="display rounded-[0.25vw] bg-cyan px-[1.5vw] py-[0.75vw] text-[2.9vw] leading-none text-ink">Motion Design</span>
+      <span class="relative h-[6vw] w-[6vw] shrink-0 overflow-hidden rounded-[0.15vw] bg-cyan">
+        <span class="dot icon-twinkle absolute left-[20%] top-[22%] h-[1.3vw] w-[1.3vw] bg-rose" style="animation-delay:0s"></span>
+        <span class="dot icon-twinkle absolute left-[45%] top-[50%] h-[1.6vw] w-[1.6vw] bg-ink" style="animation-delay:0.3s"></span>
+        <span class="dot icon-twinkle absolute left-[62%] top-[30%] h-[0.8vw] w-[0.8vw] bg-ink" style="animation-delay:0.6s"></span>
+        <span class="dot icon-twinkle absolute left-[68%] top-[62%] h-[1vw] w-[1vw] bg-ink" style="animation-delay:0.9s"></span>
+        <span class="dot icon-twinkle absolute left-[22%] top-[68%] h-[0.7vw] w-[0.7vw] bg-rose" style="animation-delay:1.2s"></span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FEATURED WORKS ═══════════════ -->
+<section id="work" class="px-[3%] pt-[7.5vw] text-center">
+  <span class="inline-flex flex-col items-center font-marker text-[2.2vw] leading-tight text-ink">
+    explore my work!
+    <svg class="mt-[0.2vw] w-[13vw]" viewBox="0 0 100 10" fill="none" aria-hidden="true">
+      <path d="M2 3h96" stroke="#111212" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M2 7h96" stroke="#111212" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </span>
+
+  <h2 class="font-pixel mt-[3.2vw] text-[8.5vw] leading-[0.95] tracking-[-0.01em]">FEATURED<br>WORKS</h2>
+
+  <p class="mx-auto mt-[3.3vw] max-w-[45%] -rotate-1 rounded-[0.25vw] bg-gold-soft px-[1.6vw] py-[2.3vw] text-left text-[1.1vw] leading-[1.6] text-black-600">
+    This is a showcase of what happens when curiosity
+    drives the process.
+  </p>
+</section>
+
+<!-- ═══════════════ PROJECTS ═══════════════ -->
+<section class="px-[3%] pt-[7.5vw]">
+
+  <!-- PROJECT 01 ────────────────────────────── -->
+  <article id="project-01" class="stack-card mb-[3.2vw]" style="z-index:11">
+    <div class="flex items-end">
+      <a href="#project-01" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      </a>
+    </div>
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-cyan p-[3vw] pt-[2.5vw]">
+
+      <!-- left: copy -->
+      <div class="flex min-w-[280px] flex-1 flex-col text-left">
+        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-ink/70">
+          <span class="dot h-[0.9vw] w-[0.9vw] bg-ink"></span> Mar 19, 2026
+        </p>
+        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-ink">Message in a bottle</h3>
+        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-ink/80">A message in a bottle is a quiet piece of your soul cast out into the unknown, trusting the tide to carry it to whoever needs to find it.</p>
+        <a href="#" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-ink pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-ink">View project ↗</a>
+
+        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
+          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-cyan">Healthcare</span>
+          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-cyan">Workflow Design</span>
+        </div>
+      </div>
+
+      <!-- right: image -->
+      <div class="relative min-w-[280px] flex-1">
+        <img src="https://placehold.co/1600x1440/2f6fae/2f6fae?text=+" alt="Meridian Health — runners resting on a track" class="aspect-[16/13] w-full border-[0.16vw] border-ink object-cover">
+        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute right-[1.6vw] top-[1.6vw] inline-flex items-centerclaude gap-[0.7vw] rounded-[0.4vw] bg-ink px-[1.2vw] py-[0.8vw] leading-none">
+          <span class="relative grid h-[2vw] w-[1.7vw] place-items-center rounded-[0.2vw] bg-cyan text-[max(6px,0.75vw)] font-bold text-ink" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
+          <span class="font-pixel text-[max(9px,1.3vw)] uppercase tracking-[0.05em] text-cyan">Image.jpg</span>
+        </span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 02 ────────────────────────────── -->
+  <article id="project-02" class="stack-card mb-[3.2vw]" style="z-index:12">
+    <div class="flex items-end">
+      <a href="#project-01" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      </a>
+      <a href="#project-02" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-ink pl-[1.8vw] pr-[2.6vw]">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-ink"></span>
+      </a>
+    </div>
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-ink p-[3vw] pt-[2.5vw]">
+
+      <!-- left: copy -->
+      <div class="flex min-w-[280px] flex-1 flex-col text-left">
+        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-white/70">
+          <span class="dot h-[0.9vw] w-[0.9vw] bg-white"></span> Mar 2, 2026
+        </p>
+        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-white">Legacy link studio</h3>
+        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-white/75">From &lsquo;I hate this system&rsquo; to &lsquo;Can we show other salons?&rsquo;</p>
+        <a href="#" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-white/50 pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-white">View project ↗</a>
+
+        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
+          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-ink">Saas</span>
+          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-ink">Transformation</span>
+        </div>
+      </div>
+
+      <!-- right: image -->
+      <div class="relative min-w-[280px] flex-1">
+        <img src="https://placehold.co/1600x1440/3b3f42/3b3f42?text=+" alt="StyleBook — salon owner reviewing bookings among plants" class="aspect-[16/13] w-full border-[0.16vw] border-white object-cover">
+        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute right-[1.6vw] top-[1.6vw] inline-flex items-center gap-[0.7vw] rounded-[0.4vw] bg-white px-[1.2vw] py-[0.8vw] leading-none">
+          <span class="relative grid h-[2vw] w-[1.7vw] place-items-center rounded-[0.2vw] bg-ink text-[max(6px,0.75vw)] font-bold text-white" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
+          <span class="font-pixel text-[max(9px,1.3vw)] uppercase tracking-[0.05em] text-ink">Image.jpg</span>
+        </span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 03 ────────────────────────────── -->
+  <article id="project-03" class="stack-card mb-[3.2vw]" style="z-index:13">
+    <div class="flex items-end">
+      <a href="#project-01" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      </a>
+      <a href="#project-02" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-ink pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-ink"></span>
+      </a>
+      <a href="#project-03" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-gold pl-[1.8vw] pr-[2.6vw]">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 03</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-gold"></span>
+      </a>
+    </div>
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-gold p-[3vw] pt-[2.5vw]">
+
+      <!-- left: copy -->
+      <div class="flex min-w-[280px] flex-1 flex-col text-left">
+        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-ink/70">
+          <span class="dot h-[0.9vw] w-[0.9vw] bg-ink"></span> Jan 2, 2025
+        </p>
+        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-ink">Shopify</h3>
+        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-ink/80">Engineered a custom Shopify POS UI Extension.</p>
+        <a href="#" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-ink pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-ink">View project ↗</a>
+
+        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
+          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-gold">Proptech</span>
+          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-gold">0 -&gt; 1</span>
+        </div>
+      </div>
+
+      <!-- right: image -->
+      <div class="relative min-w-[280px] flex-1">
+        <img src="https://placehold.co/1600x1440/d9a441/d9a441?text=+" alt="Homestead — corgis outside a storefront window display" class="aspect-[16/13] w-full border-[0.16vw] border-ink object-cover">
+        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <span class="absolute right-[1.6vw] top-[1.6vw] inline-flex items-center gap-[0.7vw] rounded-[0.4vw] bg-ink px-[1.2vw] py-[0.8vw] leading-none">
+          <span class="relative grid h-[2vw] w-[1.7vw] place-items-center rounded-[0.2vw] bg-gold text-[max(6px,0.75vw)] font-bold text-ink" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
+          <span class="font-pixel text-[max(9px,1.3vw)] uppercase tracking-[0.05em] text-gold">Image.jpg</span>
+        </span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 04 ────────────────────────────── -->
+  <article id="project-04" class="stack-card mb-[3.2vw]" style="z-index:14">
+    <div class="flex items-end">
+      <a href="#project-01" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      </a>
+      <a href="#project-02" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-ink pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-ink"></span>
+      </a>
+      <a href="#project-03" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-gold pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 03</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-gold"></span>
+      </a>
+      <a href="#project-04" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-rose pl-[1.8vw] pr-[2.6vw]">
+        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 04</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-rose"></span>
+      </a>
+    </div>
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-rose p-[3vw] pt-[2.5vw]">
+
+      <!-- left: copy -->
+      <div class="flex min-w-[280px] flex-1 flex-col text-left">
+        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-white/70">
+          <span class="dot h-[0.9vw] w-[0.9vw] bg-white"></span> Mar 19, 2026
+        </p>
+        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-white">North Light</h3>
+        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-white/80">Getting seven stakeholders to agree on what they&rsquo;re actually building.</p>
+        <a href="#" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-white/50 pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-white">View project ↗</a>
+
+        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
+          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-rose">Strategy</span>
+          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-rose">Enterprise</span>
+        </div>
+      </div>
+
+      <!-- right: image -->
+      <div class="relative min-w-[280px] flex-1">
+        <img src="https://placehold.co/1600x1440/c9c2b4/c9c2b4?text=+" alt="North Light — a lone hiker on desert dunes" class="aspect-[16/13] w-full border-[0.16vw] border-white object-cover">
+        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <span class="absolute right-[1.6vw] top-[1.6vw] inline-flex items-center gap-[0.7vw] rounded-[0.4vw] bg-white px-[1.2vw] py-[0.8vw] leading-none">
+          <span class="relative grid h-[2vw] w-[1.7vw] place-items-center rounded-[0.2vw] bg-rose text-[max(6px,0.75vw)] font-bold text-white" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
+          <span class="font-pixel text-[max(9px,1.3vw)] uppercase tracking-[0.05em] text-rose">Image.jpg</span>
+        </span>
+      </div>
+    </div>
+  </article>
+
+  <!-- holds the completed stack on screen for a beat before the page moves on -->
+  <div aria-hidden="true" class="h-[26vw]"></div>
+</section>
+
+<!-- ═══════════════ LET'S TALK ═══════════════ -->
+<section id="contact" class="px-[3%] pt-[8vw]">
+  <div class="flex items-center justify-center gap-[4vw]">
+    <!-- blob -->
+    <div class="relative shrink-0">
+      <svg id="talk-blob" class="h-auto w-[24vw] overflow-visible" viewBox="20 45 360 320" fill="none" aria-hidden="true">
+        <g class="icon-spin" style="transform-box: fill-box;">
+          <path d="M200 300C190 340 150 365 110 350C55 330 35 265 65 215C20 180 25 105 75 75C130 42 185 70 200 110C215 70 270 42 325 75C375 105 380 180 335 215C365 265 345 330 290 350C250 365 210 340 200 300Z" fill="#2eb67d" stroke="#111212" stroke-width="4" stroke-linejoin="round"/>
+        </g>
+        <g id="blob-eyes">
+          <g class="icon-blink" style="transform-box: fill-box;">
+            <rect x="192" y="138" width="25" height="46" rx="12.5" fill="#111212"/>
+            <rect x="228" y="138" width="25" height="46" rx="12.5" fill="#111212"/>
+          </g>
+        </g>
+      </svg>
+      <!-- spinning star accent -->
+      <svg class="icon-spin absolute -right-[1.5vw] -top-[1vw] h-[3.4vw] w-[3.4vw]" viewBox="0 0 24 24" fill="#ecb22e" aria-hidden="true">
+        <path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/>
+      </svg>
+    </div>
+
+    <div>
+      <h2 class="font-pixel whitespace-nowrap text-[6.2vw] leading-[1.05] tracking-[0.02em]">LET&rsquo;S TALK</h2>
+      <p class="mt-[1.3vw] max-w-[34vw] text-[1.15vw] leading-[1.6] text-grey-500">
+        I&rsquo;m most energized by projects where I can dig into complex
+        problems, collaborate with smart people, and ship things that
+        genuinely improve someone&rsquo;s day.
+      </p>
+    </div>
+  </div>
+
+  <!-- contact card -->
+  <div class="relative mt-[6vw] overflow-hidden rounded-[1.2vw] border-[0.2vw] border-cocoa bg-gold pb-[21vw] pt-[21vw]">
+    <svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M22 40 L12 42 L0 58 L0 68 Z" fill="#522e29"/>
+      <path d="M84 26 L100 22 L100 55 L46 82 Z" fill="#522e29"/>
+    </svg>
+
+    <h3 class="relative flex justify-center leading-none">
+      <div class="inline-flex items-center gap-[0.8vw] border-[0.2vw] border-ink bg-cyan px-[0.8vw] py-[0.35vw]">
+        <div class="relative h-[2.6vw] w-[2.6vw] shrink-0 border-[0.15vw] border-ink bg-rose">
+          <div class="absolute inset-0 bg-ink" style="clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+          <svg class="absolute inset-0 h-full w-full p-[0.55vw]" viewBox="0 0 100 100" fill="#ecb22e" aria-hidden="true">
+            <polygon points="8,18 40,50 8,82 22,82 54,50 22,18"/>
+            <polygon points="32,18 64,50 32,82 46,82 78,50 46,18"/>
+            <polygon points="88,28 97,37 97,63 88,72 88,58 93,50 88,42"/>
+          </svg>
+        </div>
+        <span class="font-pixel text-[3.8vw] leading-[1.05] tracking-[0.02em] text-ink">CONTACT</span>
+        <div class="relative h-[2.6vw] w-[2.6vw] shrink-0 border-[0.15vw] border-ink bg-rose">
+          <div class="absolute inset-0 bg-ink" style="clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+          <svg class="absolute inset-0 h-full w-full p-[0.55vw]" viewBox="0 0 100 100" fill="#ecb22e" aria-hidden="true">
+            <polygon points="8,18 40,50 8,82 22,82 54,50 22,18"/>
+            <polygon points="32,18 64,50 32,82 46,82 78,50 46,18"/>
+            <polygon points="88,28 97,37 97,63 88,72 88,58 93,50 88,42"/>
+          </svg>
+        </div>
+      </div>
+    </h3>
+
+    <!-- message composer, overlapping the top edge of the card -->
+    <div class="absolute left-[6%] top-[0.65vw] w-[58%] rounded-[0.4vw] bg-white shadow-[0_0.35vw_1vw_rgba(0,0,0,0.10)]">
+      <div class="border-b border-grey-200 px-[1vw] py-[1.2vw] text-[max(9px,0.7vw)] font-medium leading-none text-grey-400">New message</div>
+      <div class="flex items-center gap-[0.55vw] border-b border-grey-200 px-[1vw] py-[1.4vw]">
+        <span class="grid h-[1.2vw] w-[1.7vw] place-items-center rounded-[0.15vw] bg-ink text-[max(8px,0.55vw)] font-bold leading-none text-white">@</span>
+        <input type="email" placeholder="jolin_ma@icloud.com" class="min-w-0 flex-1 bg-transparent text-[0.7vw] leading-none text-ink outline-none placeholder:text-grey-300">
+        <button class="rounded-[0.2vw] border border-grey-300 px-[0.8vw] py-[0.5vw] text-[max(9px,0.6vw)] font-semibold leading-none text-grey-500">Send &nbsp;↗</button>
+      </div>
+      <div class="flex items-start gap-[0.55vw] px-[1vw] py-[1.2vw]">
+        <span class="mt-[0.1vw] grid h-[0.9vw] w-[0.9vw] place-items-center rounded-[0.15vw] bg-cyan text-[max(7px,0.45vw)] leading-none text-white">B</span>
+        <textarea rows="1" placeholder="conversations about hard design problems" class="message-input min-w-0 flex-1 resize-none overflow-hidden bg-transparent text-[0.7vw] leading-none text-ink outline-none placeholder:text-grey-500"></textarea>
+      </div>
+      <div class="px-[1vw] pb-[1.2vw]">
+        <span class="inline-flex items-center gap-[0.3vw] rounded-[0.2vw] bg-cyan-soft px-[0.5vw] py-[0.35vw] text-[max(9px,0.65vw)] leading-none">👋 <span class="text-grey-500">1</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="mt-[4vw] border-t border-grey-200">
+  <!-- ruler: same drifting ticks/numbers as the header ruler -->
+  <div class="relative h-[2.7vw] overflow-hidden border-b border-grey-300">
+    <div id="footer-ruler-track" class="ruler-track absolute inset-0 will-change-transform"
+         style="background-image:
+                  repeating-linear-gradient(to right, #c6c6c7 0 1px, transparent 1px 100px),
+                  repeating-linear-gradient(to right, #dedede 0 1px, transparent 1px 50px);
+                background-size: 100% 46%, 100% 24%;
+                background-repeat: repeat-x;
+                background-position: 0 0.3vw, 0 0.3vw;">
+      <div id="footer-ruler-nums" class="ruler-nums absolute inset-x-0 top-[1.5vw] h-[1vw] font-mono text-[max(7px,0.78vw)] text-grey-300"></div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center px-[3%] py-[8vw] text-[max(9px,1.3vw)] uppercase tracking-[0.2em] text-grey-400">
+    <p class="font-semibold text-grey-500">© 2026 Jolin Ma</p>
+  </div>
+</footer>
+
+<script>
+  // menu open / close
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var panel = document.getElementById('menu-panel');
+    var label = document.getElementById('menu-label');
+    var iOpen = document.getElementById('menu-icon-open');
+    var iClose = document.getElementById('menu-icon-close');
+    function set(open) {
+      panel.classList.toggle('hidden', !open);
+      iOpen.classList.toggle('hidden', open);
+      iClose.classList.toggle('hidden', !open);
+      label.textContent = open ? 'Close' : 'Menu';
+      btn.setAttribute('aria-expanded', String(open));
+    }
+    btn.addEventListener('click', function () {
+      set(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') set(false);
+    });
+  })();
+
+  // ruler numbers, every 100px — drawn past both edges so the drift below never
+  // exposes a blank strip at either end of the track. Applies to every ruler
+  // instance on the page (header + footer).
+  (function () {
+    var hosts = document.querySelectorAll('.ruler-nums');
+    var MARGIN = 240;
+    function draw() {
+      var w = document.documentElement.clientWidth;
+      var out = '';
+      for (var x = -MARGIN; x < w + MARGIN; x += 100) {
+        var label = Math.abs(x);
+        out += '<span style="position:absolute;left:' + (x + 5) + 'px">' + label + '</span>';
+      }
+      for (var i = 0; i < hosts.length; i++) hosts[i].innerHTML = out;
+    }
+    draw();
+    addEventListener('resize', draw);
+  })();
+
+  // ruler drift: ticks + numbers ease sideways toward the cursor's position,
+  // like the ruler is being scrubbed as the mouse crosses the page. Drives
+  // every ruler instance on the page (header + footer) from the same target.
+  (function () {
+    var tracks = document.querySelectorAll('.ruler-track');
+    var target = 0;
+    var current = 0;
+    var MAX_SHIFT = 70;
+
+    addEventListener('mousemove', function (e) {
+      var w = window.innerWidth || document.documentElement.clientWidth;
+      var fromCenter = (e.clientX / w) * 2 - 1; // -1 (left edge) .. 1 (right edge)
+      target = -fromCenter * MAX_SHIFT;
+    });
+
+    function raf() {
+      current += (target - current) * 0.08;
+      var transform = 'translateX(' + current.toFixed(2) + 'px)';
+      for (var i = 0; i < tracks.length; i++) tracks[i].style.transform = transform;
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  })();
+
+  // clock
+  (function () {
+    var el = document.getElementById('clock');
+    function tick() {
+      el.textContent = new Date().toLocaleTimeString('en-US', { hour12: true });
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // "you" cursor: dot snaps exactly to the real pointer; label eases behind it
+  // so the two feel like separate, detached pieces rather than one rigid unit
+  (function () {
+    var dot = document.getElementById('you-cursor-dot');
+    var label = document.getElementById('you-cursor-label');
+    var mouseX = 0, mouseY = 0;
+    var labelX = 0, labelY = 0;
+    var inited = false;
+
+    function offset() {
+      var w = window.innerWidth || document.documentElement.clientWidth;
+      return { x: w * 0.013, y: w * 0.011 };
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.classList.remove('hidden');
+      label.classList.remove('hidden');
+      dot.style.transform = 'translate(' + mouseX + 'px,' + mouseY + 'px)';
+      if (!inited) {
+        var o = offset();
+        labelX = mouseX + o.x;
+        labelY = mouseY + o.y;
+        inited = true;
+      }
+    });
+    document.addEventListener('mouseleave', function () {
+      dot.classList.add('hidden');
+      label.classList.add('hidden');
+    });
+
+    function raf() {
+      var o = offset();
+      labelX += (mouseX + o.x - labelX) * 0.2;
+      labelY += (mouseY + o.y - labelY) * 0.2;
+      label.style.transform = 'translate(' + labelX.toFixed(1) + 'px,' + labelY.toFixed(1) + 'px)';
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  })();
+
+  // blob eyes: nudge toward the cursor, like a googly-eye tracking the mouse
+  (function () {
+    var blob = document.getElementById('talk-blob');
+    var eyes = document.getElementById('blob-eyes');
+    if (!blob || !eyes) return;
+    var targetX = 0, targetY = 0, curX = 0, curY = 0;
+    var MAX_SHIFT = 7; // in the SVG's own viewBox units
+
+    document.addEventListener('mousemove', function (e) {
+      var r = blob.getBoundingClientRect();
+      var cx = r.left + r.width / 2;
+      var cy = r.top + r.height / 2;
+      var dx = e.clientX - cx;
+      var dy = e.clientY - cy;
+      var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      targetX = (dx / dist) * MAX_SHIFT;
+      targetY = (dy / dist) * MAX_SHIFT;
+    });
+
+    function raf() {
+      curX += (targetX - curX) * 0.15;
+      curY += (targetY - curY) * 0.15;
+      eyes.setAttribute('transform', 'translate(' + curX.toFixed(2) + ',' + curY.toFixed(2) + ')');
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  })();
+  // project cards: depth cue for the sticky folder stack. as the next card
+  // slides up over a card, that card scales down slightly and darkens, so the
+  // pile reads as depth rather than a flat overlap.
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.stack-card'));
+    if (cards.length < 2) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var stacks = window.matchMedia('(min-width: 901px)');
+    var ticking = false;
+
+    var MAX_SCALE_DROP = 0.05; // fully covered card sits 5% smaller
+    var MAX_DIM = 0.14;        // ...under a 14% black scrim
+
+    function reset() {
+      cards.forEach(function (card) {
+        card.style.transform = '';
+        var body = card.querySelector('.stack-body');
+        if (body) body.style.setProperty('--dim', 0);
+      });
+    }
+
+    function update() {
+      ticking = false;
+      if (!stacks.matches || reduced.matches) return reset();
+
+      cards.forEach(function (card, i) {
+        var next = cards[i + 1];
+        var p = 0;
+        if (next) {
+          var top = card.getBoundingClientRect().top;
+          var h = card.offsetHeight || 1;
+          // gap closes from a full card height down to 0 as `next` covers this one
+          var gap = next.getBoundingClientRect().top - top;
+          p = Math.min(1, Math.max(0, (h - gap) / h));
+        }
+        card.style.transform = p ? 'scale(' + (1 - MAX_SCALE_DROP * p).toFixed(4) + ')' : '';
+        var body = card.querySelector('.stack-body');
+        if (body) body.style.setProperty('--dim', (MAX_DIM * p).toFixed(4));
+      });
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    if (stacks.addEventListener) stacks.addEventListener('change', onScroll);
+    update();
+  })();
+
+  // contact composer: grow the message textarea to fit its content
+  (function () {
+    var textarea = document.querySelector('.message-input');
+    if (!textarea) return;
+    function grow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', grow);
+  })();
+</script>
+</body>
+</html>
