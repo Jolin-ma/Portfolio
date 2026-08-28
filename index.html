@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jolin Ma — Product Designer</title>
+<title>Jolin Ma — E-commerce & Digital Marketing</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,11 +110,13 @@
      covered cards scale down a touch and take a scrim (--dim, driven by JS). */
   .stack-card {
     position: sticky;
-    top: 4vw;
-    transform-origin: 50% 4.2vw;
+    top: 3vw;
+    transform-origin: 50% 3.2vw;
     will-change: transform;
   }
-  .stack-body { position: relative; }
+  /* piled cards must all share one height, or a shorter card on top won't
+     fully cover a taller one underneath and its edge peeks out below */
+  .stack-body { position: relative; min-height: 33vw; }
   .stack-body::after {
     content: '';
     position: absolute;
@@ -210,10 +212,6 @@
     </a>
 
     <div class="flex items-center justify-end gap-[1.1vw] px-[2.2vw] py-[1.6vw]">
-      <a href="mailto:hello@jolinma.com" aria-label="Email"
-         class="grid h-[3.4vw] w-[3.4vw] place-items-center rounded-full bg-grey-100 font-mono text-[max(8px,1vw)] uppercase tracking-[0.08em] text-grey-500">Em</a>
-      <a href="tel:+13120000000" aria-label="Phone"
-         class="grid h-[3.4vw] w-[3.4vw] place-items-center rounded-full bg-grey-100 font-mono text-[max(8px,1vw)] uppercase tracking-[0.08em] text-grey-500">Ph</a>
       <a href="#contact" class="flex items-center gap-[0.9vw] border-[0.15vw] border-ink px-[1.5vw] py-[0.85vw] font-mono text-[max(9px,1.15vw)] font-medium uppercase tracking-[0.14em] text-ink">
         <svg class="h-[1.5vw] w-[1.5vw]" viewBox="0 0 24 24" fill="#111212" aria-hidden="true"><path d="M12 21S3 14.6 3 8.9A5.1 5.1 0 0 1 12 5.8 5.1 5.1 0 0 1 21 8.9C21 14.6 12 21 12 21z"/></svg>
         Contact
@@ -343,7 +341,7 @@
       <span class="block h-[0.9vw] w-[0.9vw] rotate-45 rounded-[0.1vw] bg-gold"></span>
       <span class="block h-[0.9vw] w-[0.9vw] rotate-45 rounded-[0.1vw] bg-gold"></span>
     </span>
-    who enjoys combining creativity, technology, and content to bring ideas to life.
+    who enjoys combining creativity, technology, and content to bring ideas to life
     <svg class="inline-block h-[2.1vw] w-[1.8vw] align-middle" viewBox="0 0 30 40" fill="#e01e5a" aria-hidden="true">
       <path d="M3 2h24c2 6-6 8-6 18s8 12 6 18H3c-2-6 6-8 6-18S1 8 3 2Z"/>
     </svg>.
@@ -401,7 +399,7 @@
 </section>
 
 <!-- ═══════════════ FEATURED WORKS ═══════════════ -->
-<section id="work" class="px-[3%] pt-[7.5vw] text-center">
+<section id="work" class="px-[3%] pt-[4vw] text-center">
   <span class="inline-flex flex-col items-center font-marker text-[2.2vw] leading-tight text-ink">
     explore my work!
     <svg class="mt-[0.2vw] w-[13vw]" viewBox="0 0 100 10" fill="none" aria-hidden="true">
@@ -418,190 +416,186 @@
 </section>
 
 <!-- ═══════════════ PROJECTS ═══════════════ -->
-<section class="px-[3%] pt-[7.5vw]">
+<section class="px-[8%] pt-[7.5vw]">
 
   <!-- PROJECT 01 ────────────────────────────── -->
-  <article id="project-01" class="stack-card mb-[3.2vw]" style="z-index:11">
+  <article id="project-01" class="stack-card mb-[2.4vw]" style="z-index:11">
     <div class="flex items-end">
-      <a href="#project-01" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      <a href="#project-01" class="relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-cyan pl-[1.4vw] pr-[2vw]">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-cyan"></span>
       </a>
     </div>
-    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-cyan p-[3vw] pt-[2.5vw]">
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[2.2vw] rounded-[1.2vw] rounded-tl-none bg-cyan p-[2.2vw] pt-[1.9vw]">
 
       <!-- left: copy -->
       <div class="flex min-w-[280px] flex-1 flex-col text-left">
-        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-ink/70">
-          <span class="dot h-[0.9vw] w-[0.9vw] bg-ink"></span> Mar 19, 2026
+        <p class="flex items-center gap-[0.6vw] font-mono text-[max(9px,1.05vw)] uppercase tracking-[0.15em] text-ink/70">
+          <span class="dot h-[0.7vw] w-[0.7vw] bg-ink"></span> Mar 19, 2026
         </p>
-        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-ink">Message in a bottle</h3>
-        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-ink/80">A digital diary where your typed thoughts break apart into letters that fall and pile up into a growing bed beneath you — a peaceful space to release your mind. Send a private link to a friend and keep the pile growing together, reply by reply.</p>
-        <a href="https://www.msg-in-a-bottle.com/" target="_blank" rel="noopener" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-ink pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-ink">View project ↗</a>
+        <h3 class="mt-[0.9vw] text-[3.4vw] font-bold leading-[1.05] tracking-[-0.01em] text-ink">Message in a bottle</h3>
+        <p class="mt-[1vw] max-w-[85%] text-[1.3vw] leading-[1.4] text-ink/80">A digital diary where your typed thoughts break apart into letters that fall and pile up into a growing bed beneath you — a peaceful space to release your mind. Send a private link to a friend and keep the pile growing together, reply by reply.</p>
+        <a href="https://www.msg-in-a-bottle.com/" target="_blank" rel="noopener" class="mt-[1.2vw] inline-flex w-fit items-center gap-[0.4vw] border-b-[0.11vw] border-ink pb-[0.2vw] font-mono text-[max(9px,1.05vw)] font-bold uppercase tracking-[0.15em] text-ink">View project ↗</a>
 
-        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
-          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-cyan">Digital Diary</span>
-          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-cyan">Therapeutic Space</span>
+        <div class="mt-auto flex flex-wrap gap-[0.8vw] pt-[1.5vw]">
+          <span class="tag-folder font-mono inline-block bg-ink px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-cyan">Digital Diary</span>
+          <span class="tag-folder font-mono inline-block bg-ink px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-cyan">Therapeutic Space</span>
         </div>
       </div>
 
       <!-- right: image -->
       <div class="relative min-w-[280px] flex-1 self-start">
-        <img src="image/msg in a bottle.jpeg" alt="Message in a bottle" class="aspect-[16/13] w-full border-[0.16vw] border-ink object-cover">
-        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
+        <img src="image/msg in a bottle.jpeg" alt="Message in a bottle" class="aspect-[16/10] w-full border-[0.12vw] border-ink object-cover">
+        <span class="absolute -left-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
+        <span class="absolute -right-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
+        <span class="absolute -bottom-[0.4vw] -left-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
+        <span class="absolute -bottom-[0.4vw] -right-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
       </div>
     </div>
   </article>
 
   <!-- PROJECT 02 ────────────────────────────── -->
-  <article id="project-02" class="stack-card mb-[3.2vw]" style="z-index:12">
+  <article id="project-02" class="stack-card mb-[2.4vw]" style="z-index:12">
     <div class="flex items-end">
-      <a href="#project-01" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      <a href="#project-01" class="invisible relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-cyan pl-[1.4vw] pr-[2vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-cyan"></span>
       </a>
-      <a href="#project-02" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-ink pl-[1.8vw] pr-[2.6vw]">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-ink"></span>
+      <a href="#project-02" class="relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-ink pl-[1.4vw] pr-[2vw]">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-ink"></span>
       </a>
     </div>
-    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-ink p-[3vw] pt-[2.5vw]">
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[2.2vw] rounded-[1.2vw] rounded-tl-none bg-ink p-[2.2vw] pt-[1.9vw]">
 
       <!-- left: copy -->
       <div class="flex min-w-[280px] flex-1 flex-col text-left">
-        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-white/70">
-          <span class="dot h-[0.9vw] w-[0.9vw] bg-white"></span> Aug 2, 2026
+        <p class="flex items-center gap-[0.6vw] font-mono text-[max(9px,1.05vw)] uppercase tracking-[0.15em] text-white/70">
+          <span class="dot h-[0.7vw] w-[0.7vw] bg-white"></span> Aug 2, 2026
         </p>
-        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-white">Busy Season</h3>
-        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-white/75">A video ad service for home service businesses — turning real job-site photos into scroll-stopping ads, launched and managed on the client's own Meta ad account every month.</p>
-        <a href="https://www.busyseason.ca/" target="_blank" rel="noopener" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-white/50 pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-white">View project ↗</a>
+        <h3 class="mt-[0.9vw] text-[3.4vw] font-bold leading-[1.05] tracking-[-0.01em] text-white">Busy Season</h3>
+        <p class="mt-[1vw] max-w-[85%] text-[1.3vw] leading-[1.4] text-white/75">A video ad service for home service businesses — turning real job-site photos into scroll-stopping ads, launched and managed on the client's own Meta ad account every month.</p>
+        <a href="https://www.busyseason.ca/" target="_blank" rel="noopener" class="mt-[1.2vw] inline-flex w-fit items-center gap-[0.4vw] border-b-[0.11vw] border-white/50 pb-[0.2vw] font-mono text-[max(9px,1.05vw)] font-bold uppercase tracking-[0.15em] text-white">View project ↗</a>
 
-        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
-          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-ink">B2B</span>
-          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-ink">Video Ads</span>
+        <div class="mt-auto flex flex-wrap gap-[0.8vw] pt-[1.5vw]">
+          <span class="tag-folder font-mono inline-block bg-white px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-ink">B2B</span>
+          <span class="tag-folder font-mono inline-block bg-white px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-ink">Video Ads</span>
         </div>
       </div>
 
       <!-- right: image -->
       <div class="relative min-w-[280px] flex-1 self-start">
-        <img src="image/busy season.png" alt="Busy Season" class="aspect-[16/13] w-full border-[0.16vw] border-white bg-ink object-contain">
-        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
+        <img src="image/busy season.png" alt="Busy Season" class="aspect-[16/10] w-full border-[0.12vw] border-white bg-ink object-contain">
+        <span class="absolute -left-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute -right-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute -bottom-[0.4vw] -left-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute -bottom-[0.4vw] -right-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
       </div>
     </div>
   </article>
 
   <!-- PROJECT 03 ────────────────────────────── -->
-  <article id="project-03" class="stack-card mb-[3.2vw]" style="z-index:13">
+  <article id="project-03" class="stack-card mb-[2.4vw]" style="z-index:13">
     <div class="flex items-end">
-      <a href="#project-01" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      <a href="#project-01" class="invisible relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-cyan pl-[1.4vw] pr-[2vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-cyan"></span>
       </a>
-      <a href="#project-02" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-ink pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-ink"></span>
+      <a href="#project-02" class="invisible relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-ink pl-[1.4vw] pr-[2vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-ink"></span>
       </a>
-      <a href="#project-03" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-gold pl-[1.8vw] pr-[2.6vw]">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 03</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-gold"></span>
+      <a href="#project-03" class="relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-gold pl-[1.4vw] pr-[2vw]">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 03</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-gold"></span>
       </a>
     </div>
-    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-gold p-[3vw] pt-[2.5vw]">
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[2.2vw] rounded-[1.2vw] rounded-tl-none bg-gold p-[2.2vw] pt-[1.9vw]">
 
       <!-- left: copy -->
       <div class="flex min-w-[280px] flex-1 flex-col text-left">
-        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-ink/70">
-          <span class="dot h-[0.9vw] w-[0.9vw] bg-ink"></span> Aug 26, 2026
+        <p class="flex items-center gap-[0.6vw] font-mono text-[max(9px,1.05vw)] uppercase tracking-[0.15em] text-ink/70">
+          <span class="dot h-[0.7vw] w-[0.7vw] bg-ink"></span> Aug 26, 2026
         </p>
-        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-ink">Shopify</h3>
-        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-ink/80">A self-directed case study built to demonstrate e-commerce coordination end to end: scanning live marketplaces for a viable product, standing up the Shopify store, designing the content-to-waitlist funnel, and reading the results. </p>
-        <a href="https://dewstick-dev.myshopify.com/" target="_blank" rel="noopener" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-ink pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-ink">View project ↗</a>
+        <h3 class="mt-[0.9vw] text-[3.4vw] font-bold leading-[1.05] tracking-[-0.01em] text-ink">Shopify</h3>
+        <p class="mt-[1vw] max-w-[85%] text-[1.3vw] leading-[1.4] text-ink/80">A self-directed case study built to demonstrate e-commerce coordination end to end: scanning live marketplaces for a viable product, standing up the Shopify store, designing the content-to-waitlist funnel, and reading the results. </p>
+        <a href="https://dewstick-dev.myshopify.com/" target="_blank" rel="noopener" class="mt-[1.2vw] inline-flex w-fit items-center gap-[0.4vw] border-b-[0.11vw] border-ink pb-[0.2vw] font-mono text-[max(9px,1.05vw)] font-bold uppercase tracking-[0.15em] text-ink">View project ↗</a>
 
-        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
-          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-gold">E-commerce</span>
-          <span class="tag-folder font-mono inline-block bg-ink px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-gold">0 -&gt; 1</span>
+        <div class="mt-auto flex flex-wrap gap-[0.8vw] pt-[1.5vw]">
+          <span class="tag-folder font-mono inline-block bg-ink px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-gold">E-commerce</span>
+          <span class="tag-folder font-mono inline-block bg-ink px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-gold">0 -&gt; 1</span>
         </div>
       </div>
 
       <!-- right: image -->
       <div class="relative min-w-[280px] flex-1 self-start">
-        <img src="https://placehold.co/1600x1440/d9a441/d9a441?text=+" alt="Homestead — corgis outside a storefront window display" class="aspect-[16/13] w-full border-[0.16vw] border-ink object-cover">
-        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-ink"></span>
-        <span class="absolute right-[1.6vw] top-[1.6vw] inline-flex items-center gap-[0.7vw] rounded-[0.4vw] bg-ink px-[1.2vw] py-[0.8vw] leading-none">
-          <span class="relative grid h-[2vw] w-[1.7vw] place-items-center rounded-[0.2vw] bg-gold text-[max(6px,0.75vw)] font-bold text-ink" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
-          <span class="font-pixel text-[max(9px,1.3vw)] uppercase tracking-[0.05em] text-gold">Image.jpg</span>
-        </span>
+        <img src="image/shopify.png" alt="Shopify storefront preview" class="aspect-[16/10] w-full border-[0.12vw] border-ink bg-ink object-contain">
+        <span class="absolute -left-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
+        <span class="absolute -right-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
+        <span class="absolute -bottom-[0.4vw] -left-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
+        <span class="absolute -bottom-[0.4vw] -right-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-ink"></span>
       </div>
     </div>
   </article>
 
   <!-- PROJECT 04 ────────────────────────────── -->
-  <article id="project-04" class="stack-card mb-[3.2vw]" style="z-index:14">
+  <article id="project-04" class="stack-card mb-[2.4vw]" style="z-index:14">
     <div class="flex items-end">
-      <a href="#project-01" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-cyan pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-cyan"></span>
+      <a href="#project-01" class="invisible relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-cyan pl-[1.4vw] pr-[2vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 01</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-cyan"></span>
       </a>
-      <a href="#project-02" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-ink pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-ink"></span>
+      <a href="#project-02" class="invisible relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-ink pl-[1.4vw] pr-[2vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-white">Project 02</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-ink"></span>
       </a>
-      <a href="#project-03" class="invisible relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-gold pl-[1.8vw] pr-[2.6vw]" aria-hidden="true" tabindex="-1">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 03</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-gold"></span>
+      <a href="#project-03" class="invisible relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-gold pl-[1.4vw] pr-[2vw]" aria-hidden="true" tabindex="-1">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-ink">Project 03</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-gold"></span>
       </a>
-      <a href="#project-04" class="relative inline-flex h-[4.2vw] shrink-0 items-center rounded-tl-[1vw] bg-rose pl-[1.8vw] pr-[2.6vw]">
-        <span class="text-[max(9px,1.35vw)] font-bold uppercase tracking-[0.15em] text-white">Project 04</span>
-        <span class="tab-slant absolute left-full top-0 h-full w-[4.2vw] bg-rose"></span>
+      <a href="#project-04" class="relative inline-flex h-[3.2vw] shrink-0 items-center rounded-tl-[0.8vw] bg-rose pl-[1.4vw] pr-[2vw]">
+        <span class="text-[max(9px,1vw)] font-bold uppercase tracking-[0.15em] text-white">Project 04</span>
+        <span class="tab-slant absolute left-full top-0 h-full w-[3.2vw] bg-rose"></span>
       </a>
     </div>
-    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[3vw] rounded-[1.6vw] rounded-tl-none bg-rose p-[3vw] pt-[2.5vw]">
+    <div class="stack-body -mt-px flex flex-wrap items-stretch gap-x-[2.2vw] rounded-[1.2vw] rounded-tl-none bg-rose p-[2.2vw] pt-[1.9vw]">
 
       <!-- left: copy -->
       <div class="flex min-w-[280px] flex-1 flex-col text-left">
-        <p class="flex items-center gap-[0.8vw] font-mono text-[max(9px,1.4vw)] uppercase tracking-[0.15em] text-white/70">
-          <span class="dot h-[0.9vw] w-[0.9vw] bg-white"></span> Mar 19, 2026
+        <p class="flex items-center gap-[0.6vw] font-mono text-[max(9px,1.05vw)] uppercase tracking-[0.15em] text-white/70">
+          <span class="dot h-[0.7vw] w-[0.7vw] bg-white"></span> May 19, 2026
         </p>
-        <h3 class="mt-[1.2vw] text-[4.6vw] font-bold leading-[1.05] tracking-[-0.01em] text-white">Legacy Link Studio</h3>
-        <p class="mt-[1.4vw] max-w-[85%] text-[1.7vw] leading-[1.4] text-white/80">60–90 second cinematic love story films built from your relationship, your memories, and the moments that mean the most — made to feel like your story, worth watching again and again.</p>
-        <a href="#" class="mt-[1.6vw] inline-flex w-fit items-center gap-[0.5vw] border-b-[0.14vw] border-white/50 pb-[0.3vw] font-mono text-[max(9px,1.4vw)] font-bold uppercase tracking-[0.15em] text-white">View project ↗</a>
+        <h3 class="mt-[0.9vw] text-[3.4vw] font-bold leading-[1.05] tracking-[-0.01em] text-white">Legacy Link Studio</h3>
+        <p class="mt-[1vw] max-w-[85%] text-[1.3vw] leading-[1.4] text-white/80">60–90 second cinematic love story films built from your relationship, your memories, and the moments that mean the most — made to feel like your story, worth watching again and again.</p>
+        <a href="#" class="mt-[1.2vw] inline-flex w-fit items-center gap-[0.4vw] border-b-[0.11vw] border-white/50 pb-[0.2vw] font-mono text-[max(9px,1.05vw)] font-bold uppercase tracking-[0.15em] text-white">View project ↗</a>
 
-        <div class="mt-auto flex flex-wrap gap-[1vw] pt-[2vw]">
-          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-rose">LOVE STORY</span>
-          <span class="tag-folder font-mono inline-block bg-white px-[1.4vw] py-[0.9vw] text-[max(8px,1.3vw)] font-semibold uppercase tracking-[0.05em] leading-none text-rose">SHORT FILM</span>
+        <div class="mt-auto flex flex-wrap gap-[0.8vw] pt-[1.5vw]">
+          <span class="tag-folder font-mono inline-block bg-white px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-rose">LOVE STORY</span>
+          <span class="tag-folder font-mono inline-block bg-white px-[1vw] py-[0.7vw] text-[max(8px,1vw)] font-semibold uppercase tracking-[0.05em] leading-none text-rose">SHORT FILM</span>
         </div>
       </div>
 
       <!-- right: image -->
       <div class="relative min-w-[280px] flex-1 self-start">
-        <img src="https://placehold.co/1600x1440/c9c2b4/c9c2b4?text=+" alt="North Light — a lone hiker on desert dunes" class="aspect-[16/13] w-full border-[0.16vw] border-white object-cover">
-        <span class="absolute -left-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute -right-[0.5vw] -top-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute -bottom-[0.5vw] -left-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute -bottom-[0.5vw] -right-[0.5vw] h-[1.1vw] w-[1.1vw] border-[0.16vw] border-white"></span>
-        <span class="absolute right-[1.6vw] top-[1.6vw] inline-flex items-center gap-[0.7vw] rounded-[0.4vw] bg-white px-[1.2vw] py-[0.8vw] leading-none">
-          <span class="relative grid h-[2vw] w-[1.7vw] place-items-center rounded-[0.2vw] bg-rose text-[max(6px,0.75vw)] font-bold text-white" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
-          <span class="font-pixel text-[max(9px,1.3vw)] uppercase tracking-[0.05em] text-rose">Image.jpg</span>
+        <img src="https://placehold.co/1600x1440/c9c2b4/c9c2b4?text=+" alt="North Light — a lone hiker on desert dunes" class="aspect-[16/10] w-full border-[0.12vw] border-white object-cover">
+        <span class="absolute -left-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute -right-[0.4vw] -top-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute -bottom-[0.4vw] -left-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute -bottom-[0.4vw] -right-[0.4vw] h-[0.8vw] w-[0.8vw] border-[0.12vw] border-white"></span>
+        <span class="absolute right-[1.2vw] top-[1.2vw] inline-flex items-center gap-[0.5vw] rounded-[0.3vw] bg-white px-[0.9vw] py-[0.6vw] leading-none">
+          <span class="relative grid h-[1.5vw] w-[1.3vw] place-items-center rounded-[0.15vw] bg-rose text-[max(6px,0.56vw)] font-bold text-white" style="clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%)">JPG</span>
+          <span class="font-pixel text-[max(9px,1vw)] uppercase tracking-[0.05em] text-rose">Image.jpg</span>
         </span>
       </div>
     </div>
   </article>
 
   <!-- holds the completed stack on screen for a beat before the page moves on -->
-  <div aria-hidden="true" class="h-[26vw]"></div>
+  <div aria-hidden="true" class="h-[19vw]"></div>
 </section>
 
 <!-- ═══════════════ LET'S TALK ═══════════════ -->
-<section id="contact" class="px-[3%] pt-[8vw]">
+<section id="contact" class="px-[8%] pt-[8vw]">
   <div class="flex items-center justify-center gap-[4vw]">
     <!-- blob -->
     <div class="relative shrink-0">
@@ -664,7 +658,7 @@
       <div class="border-b border-grey-200 px-[1vw] py-[1.2vw] text-[max(9px,0.7vw)] font-medium leading-none text-grey-400">New message</div>
       <div class="flex items-center gap-[0.55vw] border-b border-grey-200 px-[1vw] py-[1.4vw]">
         <span class="grid h-[1.2vw] w-[1.7vw] place-items-center rounded-[0.15vw] bg-ink text-[max(8px,0.55vw)] font-bold leading-none text-white">@</span>
-        <input type="email" name="email" required placeholder="jolin_ma@icloud.com" class="min-w-0 flex-1 bg-transparent text-[max(13px,0.95vw)] leading-none text-ink outline-none placeholder:text-grey-300">
+        <input type="email" name="email" required placeholder="your@email.com" class="min-w-0 flex-1 bg-transparent text-[max(13px,0.95vw)] leading-none text-ink outline-none placeholder:text-grey-300">
         <button type="submit" class="contact-submit rounded-[0.2vw] border border-grey-300 px-[0.8vw] py-[0.5vw] text-[max(9px,0.6vw)] font-semibold leading-none text-grey-500">Send &nbsp;↗</button>
       </div>
       <div class="flex items-start gap-[0.55vw] px-[1vw] py-[1.2vw]">
@@ -845,8 +839,8 @@
     requestAnimationFrame(raf);
   })();
   // project cards: depth cue for the sticky folder stack. as the next card
-  // slides up over a card, that card scales down slightly and darkens, so the
-  // pile reads as depth rather than a flat overlap.
+  // slides up over a card, that card darkens under a scrim, so the pile reads
+  // as depth without resizing any card (every card must stay the same size).
   (function () {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.stack-card'));
     if (cards.length < 2) return;
@@ -854,8 +848,8 @@
     var stacks = window.matchMedia('(min-width: 901px)');
     var ticking = false;
 
-    var MAX_SCALE_DROP = 0.05; // fully covered card sits 5% smaller
-    var MAX_DIM = 0.14;        // ...under a 14% black scrim
+    var MAX_SCALE_DROP = 0; // covered cards keep full size, so every card in the pile matches
+    var MAX_DIM = 0.14;     // ...only a 14% black scrim signals depth
 
     function reset() {
       cards.forEach(function (card) {
