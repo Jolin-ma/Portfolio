@@ -27,7 +27,7 @@ to ignore or delete).
   accents pointing back at them (fixed direction + `right-full`/`left-full` positioning so
   they clear the name text regardless of tag content length). Two avatar bubbles are real
   map-pin shapes (`border-radius: 50% 50% 50% 0` + `rotate(-45deg)` trick) using the real
-  photo (`image/me.png`), each with a hover tooltip styled as a chat bubble ("hello my
+  photo (`image/me.webp`), each with a hover tooltip styled as a chat bubble ("hello my
   friend" / "nice to meet you", via `.group` + `group-hover`). A live "YOU" cursor follows
   the real mouse pointer site-wide, styled as an octagon + label — **see the dedicated
   entry further down for the detach/contrast rework**, this original single-div version is
@@ -76,7 +76,7 @@ to ignore or delete).
   exist in any reference — the only image badge is the single top-right "JPG · IMAGE.JPG"
   chip, recolored per project (inverts light/dark to contrast its card). Projects 02–04 still
   use `placehold.co` color-swatch placeholders for their photos — no local asset exists for
-  salon/homestead/desert scenes the way `image/me.png` does for the hero/about photos.
+  salon/homestead/desert scenes the way `image/me.webp` does for the hero/about photos.
 - **Scroll-stacking animation — attempted and reverted, needs a different approach next time.**
   The reference screenshots are almost certainly mid-scroll snapshots of a "folder stack"
   effect (each project's full card slides up and covers the previous one, leaving only its tab
@@ -206,7 +206,7 @@ to ignore or delete).
   `System.Drawing` snippets used throughout this session (see conversation) rather than
   guessing from the thumbnail — several details (arrow directions, icon shapes, exact
   colors) were only visible at higher zoom.
-- `image/me.png` is the real photo now used in the hero avatars and the About polaroid —
+- `image/me.webp` is the real photo now used in the hero avatars and the About polaroid —
   reuse it rather than placeholder swatches wherever the reference shows a real photo.
 - Design tokens (`--token-...` CSS vars + the Tailwind `colors` block) already cover the
   full palette: cyan `#36c5f0`, gold `#ecb22e`, grass `#2eb67d`, rose `#e01e5a`, ink

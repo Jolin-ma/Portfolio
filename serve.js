@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 8123;
-const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png' };
+const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.jpeg': 'image/jpeg', '.webp': 'image/webp' };
 
 http
   .createServer((req, res) => {
